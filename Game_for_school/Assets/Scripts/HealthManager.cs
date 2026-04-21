@@ -1,13 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
-    public Image healthBar;
-    public int health;
-    public int maxHealth;
-
-    public Sprite visHp;
+    [SerializeField] private Image health_bar_full;
+    [SerializeField] private player_stats player_stats;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,6 +16,11 @@ public class HealthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateHealthBar();
+    }
+
+    private void UpdateHealthBar()
+    {
+        health_bar_full.fillAmount = (float)player_stats.health / player_stats.maxHealth;
     }
 }

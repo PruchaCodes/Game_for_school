@@ -335,7 +335,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -975.58, y: -514.63}
+  m_AnchoredPosition: {x: -975.4, y: -514.04}
   m_SizeDelta: {x: 2.053, y: 2.053}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &343163304
@@ -631,7 +631,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -975.58, y: -514.63}
+  m_AnchoredPosition: {x: -975.39996, y: -514.04}
   m_SizeDelta: {x: 1.9116, y: 1.5816}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &962353896
@@ -672,6 +672,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 962353894}
   m_CullTransparentMesh: 1
+--- !u!1 &1318714017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1318714019}
+  - component: {fileID: 1318714018}
+  m_Layer: 0
+  m_Name: Tap_Dmg_debug
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1318714018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318714017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abcd29de8a0462240af54798f7a927d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  player_stats: {fileID: 1652877283}
+  dmgOnClick: 10
+  healOnClick: 15
+--- !u!4 &1318714019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318714017}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.4236, y: -0.04065, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1422588323
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,10 +748,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecdbdd5977bf4494fabd2ba1d0e68ab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  healthBar: {fileID: 0}
-  health: 0
-  maxHealth: 0
-  visHp: {fileID: 7593031173493002012, guid: cd9ef6ff4e23c2447abfb8dca2420be8, type: 3}
+  health_bar_full: {fileID: 962353896}
+  player_stats: {fileID: 1652877283}
 --- !u!4 &1422588325
 Transform:
   m_ObjectHideFlags: 0
@@ -1006,3 +1051,4 @@ SceneRoots:
   - {fileID: 330151420}
   - {fileID: 106327515}
   - {fileID: 1422588325}
+  - {fileID: 1318714019}
