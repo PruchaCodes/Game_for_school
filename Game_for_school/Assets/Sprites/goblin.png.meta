@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4bc60ab606c4b2840abf01859a93ea52
+guid: 770882959906edd479d4f3ec9f306ea8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8768356317699350666
-    second: Background_skola_game_0
+      213: 2572365745140355499
+    second: goblin_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Background_skola_game_0
+      name: goblin_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 480
-        height: 270
+        width: 20
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a80a58c3d957fa970800000000000000
-      internalID: 8768356317699350666
+      spriteID: ba159772401e2b320800000000000000
+      internalID: 2572365745140355499
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Background_skola_game_0: 8768356317699350666
+      goblin_0: 2572365745140355499
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
