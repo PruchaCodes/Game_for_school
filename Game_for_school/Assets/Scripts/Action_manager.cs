@@ -9,7 +9,7 @@ public class Action_manager : MonoBehaviour
     public float speed;
     public float targetEnemy = 2.24f, targetOrigin = -5f;
     private Rigidbody2D rb;
-    private bool isAttacking = false;
+    public bool isAttacking = false;
     [SerializeField] private Transform player_transform;
     [SerializeField] private player_stats player_stats;
 

@@ -18,6 +18,19 @@ public class player_stats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(health <= 0)
+        {
+            health = 0;
+        }else if(health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        if(stamina <= 0)
+        {
+            stamina = 0;
+        }else if(stamina > maxStamina)
+        {
+            stamina = maxStamina;
+        }
     }
 }

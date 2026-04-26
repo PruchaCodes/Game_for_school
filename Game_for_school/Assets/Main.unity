@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 13896735}
   - component: {fileID: 13896734}
   - component: {fileID: 13896739}
+  - component: {fileID: 13896740}
   m_Layer: 0
   m_Name: Enemy_card_goblin
   m_TagString: Enemy
@@ -214,7 +215,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -318,6 +319,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   player_stats: {fileID: 1652877283}
   enemy_script_goblin: {fileID: 13896734}
+  action_manager: {fileID: 1652877288}
+  enemy_action_manager: {fileID: 13896740}
+--- !u!114 &13896740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13896733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccacb1e1452b5364aa9c64a35a131d08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  enemy_script_goblin: {fileID: 13896734}
+  goblin_transform: {fileID: 13896738}
+  speed: 8
+  targetEnemy: -1
+  targetOrigin: 4
+  isAttacking: 0
 --- !u!1 &106327512
 GameObject:
   m_ObjectHideFlags: 0
@@ -1429,6 +1450,7 @@ MonoBehaviour:
   speed: 8
   targetEnemy: 1
   targetOrigin: -4
+  isAttacking: 0
   player_transform: {fileID: 1652877287}
   player_stats: {fileID: 1652877283}
 --- !u!1 &1853856649
