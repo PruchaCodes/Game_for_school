@@ -3,7 +3,7 @@ using System.Collections;
 
 public class enemy_type1_action_manager : MonoBehaviour
 {
-    [SerializeField] private Enemy_script_goblin enemy_script_goblin;
+    [SerializeField] private enemy_stats enemy_stats;
     [SerializeField] private Transform goblin_transform;
 
     public float speed;
@@ -20,7 +20,7 @@ public class enemy_type1_action_manager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Player") && enemy_script_goblin.health > 0 && !isAttacking)
+        if (collider.CompareTag("Player") && enemy_stats.health > 0 && !isAttacking)
         {
             StartCoroutine(AttackSequence());
         }

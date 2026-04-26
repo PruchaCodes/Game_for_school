@@ -6,7 +6,7 @@ public class HealthManager : MonoBehaviour
 {
     [SerializeField] private Image health_bar_full;
     [SerializeField] private player_stats player_stats;
-    [SerializeField] private Enemy_script_goblin enemy_script_goblin;
+    [SerializeField] private enemy_stats enemy_stats;
     [SerializeField] private Image enemy_health_bar_full;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,6 +29,6 @@ public class HealthManager : MonoBehaviour
 
     private void UpdateEnemyHealthBar()
     {
-        enemy_health_bar_full.fillAmount = (float)enemy_script_goblin.health / enemy_script_goblin.maxHealth;
+        enemy_health_bar_full.fillAmount = (float)enemy_stats.health / enemy_stats.maxHealth;
     }
 }

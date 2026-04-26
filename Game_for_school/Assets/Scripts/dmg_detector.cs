@@ -3,7 +3,7 @@ using UnityEngine;
 public class dmg_detector : MonoBehaviour
 {
     [SerializeField] private player_stats player_stats;
-    [SerializeField] private Enemy_script_goblin enemy_script_goblin;
+    [SerializeField] private enemy_stats enemy_script_goblin;
     [SerializeField] private Action_manager action_manager;
     [SerializeField] private enemy_type1_action_manager enemy_action_manager;
 
