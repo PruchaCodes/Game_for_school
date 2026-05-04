@@ -12,6 +12,7 @@ public class Action_manager : MonoBehaviour
     public bool isAttacking = false;
     [SerializeField] private Transform player_transform;
     [SerializeField] private player_stats player_stats;
+    [SerializeField] private enemy_stats enemy_stats;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,7 +23,7 @@ public class Action_manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad1) && player_transform.position.x == targetOrigin && player_stats.stamina > 0)
+        if (Input.GetKeyDown(KeyCode.Keypad1) && player_transform.position.x == targetOrigin && player_stats.stamina > 0 && enemy_stats.health > 0 && player_stats.health > 0)
         {
             isAttacking = true;
         }

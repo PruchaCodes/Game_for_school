@@ -11,4 +11,6 @@ public class CharacterData : ScriptableObject
     public int maxMana;
 
     public Sprite portrait;
+
+    public GameObject playerPrefab;
 }
