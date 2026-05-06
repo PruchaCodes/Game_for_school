@@ -2,39 +2,34 @@ using UnityEngine;
 
 public class dmg_detector : MonoBehaviour
 {
-    [SerializeField] private player_stats player_stats;
-    [SerializeField] private enemy_stats enemy_script_goblin;
-    [SerializeField] private Action_manager action_manager;
-    [SerializeField] private enemy_type1_action_manager enemy_action_manager;
+    private player_stats player_stats;
+    private enemy_stats enemy_stats;
+    private Action_manager action_manager;
+    private enemy_type1_action_manager enemy_action_manager;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-    }
+        enemy_stats = GetComponent<enemy_stats>();
+        enemy_action_manager = GetComponent<enemy_type1_action_manager>();
 
-    // Update is called once per frame
-    void Update()
-    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player_stats = player.GetComponent<player_stats>();
+        action_manager = player.GetComponent<Action_manager>();
+        
         
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Player") && enemy_script_goblin.health > 0 && action_manager.isAttacking && player_stats.stamina > 0)
+        if (collider.CompareTag("Player") && enemy_stats.health > 0 && action_manager.isAttacking && player_stats.stamina > 0)
         {
-            enemy_script_goblin.health -= player_stats.damage;
+            enemy_stats.health -= player_stats.damage;
             player_stats.stamina -= 10;
-            
         }
-       
-       if (collider.CompareTag("Player") && player_stats.health > 0 && enemy_action_manager.isAttacking)
+
+        if (collider.CompareTag("Player") && player_stats.health > 0 && enemy_action_manager.isAttacking)
         {
-            player_stats.health -= enemy_script_goblin.damage;
-            
-            
+            player_stats.health -= enemy_stats.damage;
         }
-        
     }
-   
 }

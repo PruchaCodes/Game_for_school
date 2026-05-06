@@ -12,6 +12,8 @@ public class Dmg_when_clicked : MonoBehaviour
     void Start()
     {
         Debug.Log("Dmg on click active");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player_stats = player.GetComponent<player_stats>();
     }
 
     // Update is called once per frame

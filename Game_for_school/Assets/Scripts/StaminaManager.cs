@@ -11,7 +11,8 @@ public class StaminaManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player_stats = player.GetComponent<player_stats>();
     }
 
     // Update is called once per frame

@@ -3,8 +3,8 @@ using System.Collections;
 
 public class enemy_type1_action_manager : MonoBehaviour
 {
-    [SerializeField] private enemy_stats enemy_stats;
-    [SerializeField] private Transform goblin_transform;
+     private enemy_stats enemy_stats;
+     private Transform goblin_transform;
 
     public float speed;
     public float targetEnemy = -1.24f;
@@ -12,16 +12,20 @@ public class enemy_type1_action_manager : MonoBehaviour
 
     private Rigidbody2D rb;
     public bool isAttacking = false;
+    private bool attackRoutineStarted = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        enemy_stats = GetComponent<enemy_stats>();
+        goblin_transform = GetComponent<Transform>();
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Player") && enemy_stats.health > 0 && !isAttacking)
+        if (collider.CompareTag("Player") && enemy_stats.health > 0 && !attackRoutineStarted)
         {
+            attackRoutineStarted = true;
             StartCoroutine(AttackSequence());
         }
     }
@@ -53,5 +57,6 @@ public class enemy_type1_action_manager : MonoBehaviour
 
         rb.linearVelocity = Vector2.zero;
         isAttacking = false;
+        attackRoutineStarted = false;
     }
 }

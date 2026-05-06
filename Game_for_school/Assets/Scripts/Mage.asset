@@ -18,4 +18,4 @@ MonoBehaviour:
   maxStamina: 40
   maxMana: 100
   portrait: {fileID: 2971653748508199937, guid: 786e6c1d0ee2f9746b2d7ef5f67ff1a0, type: 3}
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 2043993186872584680, guid: 620d28da14979f34687529c5ef632923, type: 3}
