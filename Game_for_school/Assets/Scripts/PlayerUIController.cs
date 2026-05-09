@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class PlayerUIController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Action_manager action_manager;
@@ -21,9 +21,18 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     public void AttackButton()
     {
+        Debug.Log("Attack button pressed");
         if(action_manager != null)
         {
-            action_manager.AttackAction();
+            action_manager.Attack();
+        }
+    }
+    public void StaminaRegenButton()
+    {
+        Debug.Log("Stamina regen button pressed");
+        if(action_manager != null)
+        {
+            action_manager.StaminaRegen();
         }
     }
 }
