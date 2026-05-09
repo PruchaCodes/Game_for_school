@@ -27,10 +27,10 @@ public class Action_manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad1) && Mathf.Abs(player_transform.position.x - targetOrigin) < 0.05f && player_stats.stamina > 0 && enemy_stats.health > 0 && player_stats.health > 0)
+        /*if (Input.GetKeyDown(KeyCode.Keypad1) && Mathf.Abs(player_transform.position.x - targetOrigin) < 0.05f && player_stats.stamina > 0 && enemy_stats.health > 0 && player_stats.health > 0)
         {
             isAttacking = true;
-        }
+        }*/
 
         if (isAttacking)
         {
@@ -42,9 +42,15 @@ public class Action_manager : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             rb.position = new Vector2(targetOrigin, rb.position.y);
         }
+
+        /*if (Input.GetKeyDown(KeyCode.Keypad2) && !isAttacking)
+        {
+            StaminaRegen();
+        }*/
+        
     }
 
-    private void AttackAction()
+    public void AttackAction()
     {
         if(player_transform.position.x < targetEnemy)
         {
@@ -56,9 +62,26 @@ public class Action_manager : MonoBehaviour
             isAttacking = false;
             
         }
+        
+    }
 
-        
-        
-        
+    public void Attack()
+    {
+        if (Mathf.Abs(player_transform.position.x - targetOrigin) < 0.05f && player_stats.stamina > 0 && enemy_stats.health > 0 && player_stats.health > 0)
+        {
+            isAttacking = true;
+        }
+    }
+
+    public void StaminaRegen()
+    {
+        if(player_stats.stamina < player_stats.maxStamina)
+        {
+            player_stats.stamina += 5;
+            if(player_stats.stamina > player_stats.maxStamina)
+            {
+                player_stats.stamina = player_stats.maxStamina;
+            }
+        }
     }
 }
