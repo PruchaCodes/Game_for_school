@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
@@ -6,10 +7,20 @@ public class EnemySpawn : MonoBehaviour
     public BattleManager battleManager;
     public Transform spawnPoint;
     
+    
 
     void Start()
     {
-        SpawnEnemy();
+        
+        
+    }
+
+    void Update()
+    {
+        if(battleManager.enemy_stats == null)
+        {
+            SpawnEnemy();
+        }
     }
 
     void SpawnEnemy()

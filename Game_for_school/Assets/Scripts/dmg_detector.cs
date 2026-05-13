@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class dmg_detector : MonoBehaviour
 {
@@ -48,4 +48,4 @@ public class dmg_detector : MonoBehaviour
             player_stats.health -= enemy_stats.damage;
         }
     }
-}
+}*/

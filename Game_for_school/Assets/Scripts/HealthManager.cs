@@ -53,8 +53,8 @@ public class HealthManager : MonoBehaviour
         if(player_stats == null)
             return;
 
-        health_bar_full.fillAmount =
-            (float)player_stats.health / player_stats.maxHealth;
+        health_bar_full.fillAmount = (float)player_stats.health / player_stats.maxHealth;
+            
     }
 
     void UpdateEnemyBar()
@@ -62,7 +62,7 @@ public class HealthManager : MonoBehaviour
         if(enemy_stats == null)
             return;
 
-        enemy_health_bar_full.fillAmount =
-            (float)enemy_stats.health / enemy_stats.maxHealth;
+        enemy_health_bar_full.fillAmount = (float)enemy_stats.health / enemy_stats.maxHealth;
+            
     }
 }

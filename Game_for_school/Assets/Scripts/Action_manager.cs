@@ -1,8 +1,8 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class Action_manager : MonoBehaviour
 {
-    private player_stats player_stats;
+    /*private player_stats player_stats;
     private Transform player_transform;
     private Rigidbody2D rb;
 
@@ -49,7 +49,7 @@ public class Action_manager : MonoBehaviour
         }
     }
 
-    public void Attack()
+    /*public void Attack()
     {
         Debug.Log("Current stamina: " + player_stats.stamina);
 
@@ -85,4 +85,4 @@ public class Action_manager : MonoBehaviour
             isAttacking = false;
         }
     }
-}
+}*/

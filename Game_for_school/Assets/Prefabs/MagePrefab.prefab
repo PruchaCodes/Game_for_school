@@ -194,7 +194,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043993186872584680}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb8f82e565824974989b668078cf4a2d, type: 3}
   m_Name: 
@@ -203,6 +203,3 @@ MonoBehaviour:
   targetEnemy: 1
   targetOrigin: -4
   isAttacking: 0
-  player_transform: {fileID: 8823654293390284484}
-  player_stats: {fileID: 6045326019875426513}
-  enemy_stats: {fileID: 0}
