@@ -440,7 +440,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 855, y: 381.0001}
+  m_AnchoredPosition: {x: 843.8735, y: 384.8571}
   m_SizeDelta: {x: 6.646, y: 2.053}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &369277714
@@ -732,7 +732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleManager
   player_stats: {fileID: 6045326019875426513, guid: adccdbe310a1be544b6d596607dc7f06, type: 3}
-  enemy_stats: {fileID: 6551324104383457219, guid: 346be2b7c239ec04c98cac2fa49e8117, type: 3}
+  enemy_stats: {fileID: 0}
   playerTurn: 1
 --- !u!4 &744486537
 Transform:
@@ -1426,7 +1426,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -850.6295, y: 263.99997}
+  m_AnchoredPosition: {x: -833.3391, y: 271.49216}
   m_SizeDelta: {x: 6.423, y: 2.053}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1581578288
@@ -1496,6 +1496,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da465f5ef014b4d41b7311e95b0301a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawn
+  enemyPrefab: {fileID: 4763478406632894097, guid: 346be2b7c239ec04c98cac2fa49e8117, type: 3}
+  battleManager: {fileID: 744486536}
   spawnPoint: {fileID: 1093516186}
 --- !u!4 &1628203307
 Transform:

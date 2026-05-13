@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class StaminaManager : MonoBehaviour
 {
     [SerializeField] private Image stamina_bar_full;
-    [SerializeField] private player_stats player_stats;
+    public player_stats player_stats;
    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

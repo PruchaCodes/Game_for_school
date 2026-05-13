@@ -10,7 +10,7 @@ public class PlayerUIController : MonoBehaviour
     void Start()
     {
         
-        battleManager = FindObjectOfType<BattleManager>();
+        battleManager = FindFirstObjectByType<BattleManager>();
     }
 
     public void OnAttackButton()

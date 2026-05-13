@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] private Image health_bar_full;
-    [SerializeField] private player_stats player_stats;
-    [SerializeField] private enemy_stats enemy_stats;
+    public player_stats player_stats;
+    public enemy_stats enemy_stats;
     [SerializeField] private Image enemy_health_bar_full;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -14,11 +14,14 @@ public class HealthManager : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player_stats = player.GetComponent<player_stats>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
+        enemy_stats = enemy.GetComponent<enemy_stats>();
         UpdateHealthBar();
         UpdateEnemyHealthBar();
     }
