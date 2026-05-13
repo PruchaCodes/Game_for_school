@@ -718,7 +718,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &744486536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1326,8 +1326,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   health_bar_full: {fileID: 962353896}
-  player_stats: {fileID: 0}
-  enemy_stats: {fileID: 0}
   enemy_health_bar_full: {fileID: 1133426617}
 --- !u!4 &1422588325
 Transform:
@@ -1838,7 +1836,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1535829273}
         m_TargetAssemblyTypeName: PlayerUIController, Assembly-CSharp
-        m_MethodName: OnAttackButton
+        m_MethodName: AttackButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1931,7 +1929,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StaminaManager
   stamina_bar_full: {fileID: 2045171049}
-  player_stats: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,38 +1,68 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] private Image health_bar_full;
-    public player_stats player_stats;
-    public enemy_stats enemy_stats;
+
     [SerializeField] private Image enemy_health_bar_full;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player_stats = player.GetComponent<player_stats>();
-        
-    }
+    private player_stats player_stats;
 
-    // Update is called once per frame
+    private enemy_stats enemy_stats;
+
     void Update()
     {
-        GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
-        enemy_stats = enemy.GetComponent<enemy_stats>();
-        UpdateHealthBar();
-        UpdateEnemyHealthBar();
+        FindPlayer();
+
+        FindEnemy();
+
+        UpdatePlayerBar();
+
+        UpdateEnemyBar();
     }
 
-    private void UpdateHealthBar()
+    void FindPlayer()
     {
-        health_bar_full.fillAmount = (float)player_stats.health / player_stats.maxHealth;
+        if(player_stats == null)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            if(player != null)
+            {
+                player_stats = player.GetComponent<player_stats>();
+            }
+        }
     }
 
-    private void UpdateEnemyHealthBar()
+    void FindEnemy()
     {
-        enemy_health_bar_full.fillAmount = (float)enemy_stats.health / enemy_stats.maxHealth;
+        if(enemy_stats == null)
+        {
+            GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
+
+            if(enemy != null)
+            {
+                enemy_stats = enemy.GetComponent<enemy_stats>();
+            }
+        }
+    }
+
+    void UpdatePlayerBar()
+    {
+        if(player_stats == null)
+            return;
+
+        health_bar_full.fillAmount =
+            (float)player_stats.health / player_stats.maxHealth;
+    }
+
+    void UpdateEnemyBar()
+    {
+        if(enemy_stats == null)
+            return;
+
+        enemy_health_bar_full.fillAmount =
+            (float)enemy_stats.health / enemy_stats.maxHealth;
     }
 }

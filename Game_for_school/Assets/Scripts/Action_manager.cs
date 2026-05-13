@@ -1,36 +1,40 @@
-
-using Unity.VisualScripting;
 using UnityEngine;
-
 
 public class Action_manager : MonoBehaviour
 {
-
     private player_stats player_stats;
     private Transform player_transform;
-    public float speed;
-    public float targetEnemy = 2.24f, targetOrigin = -5f;
     private Rigidbody2D rb;
-    public bool isAttacking = false;
+
     private enemy_stats enemy_stats;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public float speed;
+
+    public float targetEnemy = 2.24f;
+    public float targetOrigin = -5f;
+
+    public bool isAttacking = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
         player_stats = GetComponent<player_stats>();
+
         player_transform = GetComponent<Transform>();
-        enemy_stats = GameObject.FindGameObjectWithTag("Enemy").GetComponent<enemy_stats>();
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.Keypad1) && Mathf.Abs(player_transform.position.x - targetOrigin) < 0.05f && player_stats.stamina > 0 && enemy_stats.health > 0 && player_stats.health > 0)
+        if(enemy_stats == null)
         {
-            isAttacking = true;
-        }*/
+            GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
+
+            if(enemy != null)
+            {
+                enemy_stats = enemy.GetComponent<enemy_stats>();
+            }
+        }
 
         if (isAttacking)
         {
@@ -40,14 +44,30 @@ public class Action_manager : MonoBehaviour
         if(player_transform.position.x <= targetOrigin && !isAttacking)
         {
             rb.linearVelocity = Vector2.zero;
+
             rb.position = new Vector2(targetOrigin, rb.position.y);
         }
+    }
 
-        /*if (Input.GetKeyDown(KeyCode.Keypad2) && !isAttacking)
+    public void Attack()
+    {
+        Debug.Log("Current stamina: " + player_stats.stamina);
+
+        if(enemy_stats == null)
+            return;
+
+        if(player_stats.stamina < 10)
         {
-            StaminaRegen();
-        }*/
-        
+            Debug.Log("NOT ENOUGH STAMINA");
+            return;
+        }
+
+        if(enemy_stats.health <= 0)
+            return;
+
+        isAttacking = true;
+
+        player_stats.stamina -= 10;
     }
 
     public void AttackAction()
@@ -55,33 +75,14 @@ public class Action_manager : MonoBehaviour
         if(player_transform.position.x < targetEnemy)
         {
             rb.linearVelocity = new Vector2(speed, rb.linearVelocity.y);
-            
-        }else if(player_transform.position.x >= targetEnemy)
+        }
+        else
         {
+            enemy_stats.health -= player_stats.damage;
+
             rb.linearVelocity = new Vector2(-speed, rb.linearVelocity.y);
+
             isAttacking = false;
-            
-        }
-        
-    }
-
-    public void Attack()
-    {
-        if (Mathf.Abs(player_transform.position.x - targetOrigin) < 0.05f && player_stats.stamina > 0 && enemy_stats.health > 0 && player_stats.health > 0)
-        {
-            isAttacking = true;
-        }
-    }
-
-    public void StaminaRegen()
-    {
-        if(player_stats.stamina < player_stats.maxStamina)
-        {
-            player_stats.stamina += 5;
-            if(player_stats.stamina > player_stats.maxStamina)
-            {
-                player_stats.stamina = player_stats.maxStamina;
-            }
         }
     }
 }

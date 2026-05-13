@@ -1,21 +1,27 @@
-using System;
 using UnityEngine;
 
 public class PlayerUIController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private BattleManager battleManager;
+    private Action_manager action_manager;
 
-
-    void Start()
+    void Update()
     {
-        
-        battleManager = FindFirstObjectByType<BattleManager>();
+        if (action_manager == null)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player != null)
+            {
+                action_manager = player.GetComponent<Action_manager>();
+            }
+        }
     }
 
-    public void OnAttackButton()
+    public void AttackButton()
     {
-        battleManager.PlayerAttack();
+        if (action_manager != null)
+        {
+            action_manager.Attack();
+        }
     }
 }
-    
