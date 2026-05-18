@@ -1623,7 +1623,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -797.90265, y: -337.07413}
+  m_AnchoredPosition: {x: -680, y: -337.07413}
   m_SizeDelta: {x: 276.178, y: 39.259}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1940322126
@@ -1831,7 +1831,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -887, y: -263.167}
+  m_AnchoredPosition: {x: -769.0973, y: -263.167}
   m_SizeDelta: {x: 160, y: 35.555}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2088483441
@@ -1878,6 +1878,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1535829273}
+        m_TargetAssemblyTypeName: PlayerUIController, Assembly-CSharp
+        m_MethodName: AssingButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: PlayerAnimation
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1535829273}
         m_TargetAssemblyTypeName: PlayerUIController, Assembly-CSharp
         m_MethodName: AttackButton

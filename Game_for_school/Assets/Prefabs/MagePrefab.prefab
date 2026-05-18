@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1968758570296040485}
   - component: {fileID: 3837366913294723710}
   - component: {fileID: 6045326019875426513}
-  - component: {fileID: 8350254122687630586}
+  - component: {fileID: 8202791900830863373}
   m_Layer: 3
   m_Name: MagePrefab
   m_TagString: Player
@@ -187,19 +187,25 @@ MonoBehaviour:
   maxStamina: 100
   mana: 0
   maxMana: 0
---- !u!114 &8350254122687630586
-MonoBehaviour:
+--- !u!95 &8202791900830863373
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043993186872584680}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb8f82e565824974989b668078cf4a2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Action_manager
-  speed: 8
-  targetEnemy: 1
-  targetOrigin: -4
-  isAttacking: 0
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8d42c68806f0adc49af3010d99677b67, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

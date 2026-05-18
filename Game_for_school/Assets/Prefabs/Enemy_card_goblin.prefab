@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 505419419342347920}
   - component: {fileID: 1412522744407449398}
   - component: {fileID: 6551324104383457219}
-  - component: {fileID: 4841056953788595610}
-  - component: {fileID: 663060419969172458}
+  - component: {fileID: -3802377525079775360}
   m_Layer: 0
   m_Name: Enemy_card_goblin
   m_TagString: Enemy
@@ -186,31 +185,25 @@ MonoBehaviour:
   damage: 10
   stamina: 100
   maxStamina: 100
---- !u!114 &4841056953788595610
-MonoBehaviour:
+--- !u!95 &-3802377525079775360
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4763478406632894097}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 962cb885e70f65446a55084caff2c8b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
---- !u!114 &663060419969172458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4763478406632894097}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccacb1e1452b5364aa9c64a35a131d08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  speed: 8
-  targetEnemy: -1.01
-  targetOrigin: 4
-  isAttacking: 0
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
