@@ -1,32 +1,59 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public GameObject enemyPrefab;
-    public BattleManager battleManager;
-    public Transform spawnPoint;
-    
-    
+    private GameObject currentEnemy;
+    private int value;
 
     void Start()
     {
-        
-        
+        SpawnEnemy();
     }
 
-    void Update()
+    public void SpawnEnemy()
     {
-        if(battleManager.enemy_stats == null)
+        EnemyData enemyData = ProgressionManager.Instance.GetCurrentEnemy();
+
+        currentEnemy = Instantiate(enemyData.enemyPrefab, transform.position, Quaternion.identity);
+
+        enemy_stats stats = currentEnemy.GetComponent<enemy_stats>();
+
+        stats.maxHealth = enemyData.maxHealth;
+
+        stats.health = enemyData.maxHealth;
+
+        stats.damage = enemyData.damage;
+        value = enemyData.value;
+        stats.isMiniboss = enemyData.isMiniboss;
+        stats.isBoss = enemyData.isBoss;
+
+        if(stats.isMiniboss)
         {
-            SpawnEnemy();
+            Debug.Log("Miniboss spawned: " + enemyData.enemyName);
         }
+        else if(stats.isBoss)
+        {
+            Debug.Log("Boss spawned: " + enemyData.enemyName);
+        }
+        else
+        {
+            Debug.Log("Enemy spawned: " + enemyData.enemyName);
+        }
+
+        
     }
 
-    void SpawnEnemy()
+    public IEnumerator EnemyDefeated()
     {
-        GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-        enemy_stats enemyStats = spawnedEnemy.GetComponent<enemy_stats>();
-        battleManager.enemy_stats = enemyStats;
+        
+        yield return new WaitForSeconds(2f);
+
+        coinCounter.Instance.AddCoins(value);
+        Destroy(currentEnemy);
+
+        ProgressionManager.Instance.AdvanceEnemy();
+
+        SpawnEnemy();
     }
 }

@@ -9,5 +9,8 @@ public class EnemyData : ScriptableObject
     public int damage;
     public string attackType;
     public Sprite portrait;
-    public GameObject enemyPrefab;   
+    public GameObject enemyPrefab;
+    public int value;
+    public bool isMiniboss;
+    public bool isBoss;
 }

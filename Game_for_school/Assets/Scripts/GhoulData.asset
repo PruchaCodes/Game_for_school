@@ -16,5 +16,6 @@ MonoBehaviour:
   maxHealth: 40
   damage: 10
   attackType: meele
-  portrait: {fileID: 0}
-  enemyPrefab: {fileID: 0}
+  portrait: {fileID: -3270371465853829570, guid: 2473a621d214c8d4aa04f7451d9475ed, type: 3}
+  enemyPrefab: {fileID: 4763478406632894097, guid: 6057c86263b74fc43b324d2e2c971341, type: 3}
+  value: 10

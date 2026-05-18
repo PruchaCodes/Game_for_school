@@ -2,17 +2,12 @@ using UnityEngine;
 
 public class enemy_stats : MonoBehaviour
 {
-    public int health = 100;
-    public int maxHealth = 100;
-    public int damage = 10;
-    public int stamina = 100;
-    public int maxStamina = 100;
+    public int health;
+    public int maxHealth;
+    public int damage;
+    public int stamina;
+    public int maxStamina;
+    public bool isMiniboss;
+    public bool isBoss;
 
-    void Update()
-    {
-        if (health <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
 }

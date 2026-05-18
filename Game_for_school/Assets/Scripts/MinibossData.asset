@@ -10,11 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3afcf31821480d4ab8962d9af073f14, type: 3}
-  m_Name: PeashooterData
+  m_Name: MinibossData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  enemyName: Peashooter
-  maxHealth: 20
-  damage: 15
+  enemyName: MiniBoss
+  maxHealth: 80
+  damage: 20
   attackType: ranged
-  portrait: {fileID: 0}
-  enemyPrefab: {fileID: 0}
+  portrait: {fileID: -7309935426003708424, guid: da76271b2270b1f4a9b1cb8d959981f9, type: 3}
+  enemyPrefab: {fileID: 4763478406632894097, guid: a9422d9b30eccaf4d900eca4187dab30, type: 3}
+  value: 20
+  isMiniboss: 1
+  isBoss: 0

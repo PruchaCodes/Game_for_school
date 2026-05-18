@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6551324104383457219}
   - component: {fileID: -3802377525079775360}
   m_Layer: 0
-  m_Name: Enemy_card_goblin
+  m_Name: MinibossPrefab_01
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 2572365745140355499, guid: 770882959906edd479d4f3ec9f306ea8, type: 3}
+  m_Sprite: {fileID: -7309935426003708424, guid: da76271b2270b1f4a9b1cb8d959981f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

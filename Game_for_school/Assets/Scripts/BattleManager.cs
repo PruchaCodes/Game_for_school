@@ -8,6 +8,8 @@ public class BattleManager : MonoBehaviour
     public enemy_stats enemy_stats;
 
     public bool playerTurn = true;
+    private bool miniBossHere = true;
+    private bool bossHere = true;
 
     void Update()
     {
@@ -19,6 +21,7 @@ public class BattleManager : MonoBehaviour
         if (enemy_stats == null)
         {
             enemy_stats = GameObject.FindGameObjectWithTag("Enemy").GetComponent<enemy_stats>();
+            
         }
 
         
@@ -26,6 +29,29 @@ public class BattleManager : MonoBehaviour
         // Hráč útočí na nepřítele, pokud je jeho tah a má dostatek staminy
     public void PlayerAttack()
     {
+
+        if (miniBossHere)
+        {
+           if(enemy_stats.isMiniboss)
+            {
+                miniBossHere = false;
+                StartCoroutine(EnemyTurn());
+                return;
+            }
+            
+        }
+
+        if (bossHere)
+        {
+           
+            if(enemy_stats.isBoss)
+            {
+                bossHere = false;
+                StartCoroutine(EnemyTurn());
+                return;
+            }
+        }
+
         if (!playerTurn)
         {
             Vyhodnoceni();
@@ -74,8 +100,10 @@ public class BattleManager : MonoBehaviour
         }
 
         if(enemy_stats.health <= 0)
-        {
-            Vyhodnoceni();
+{
+            StartCoroutine(FindFirstObjectByType<EnemySpawn>().EnemyDefeated());
+            miniBossHere = true;
+            bossHere = true;
         }
 
         playerTurn = true;
@@ -84,11 +112,30 @@ public class BattleManager : MonoBehaviour
         //Regenerace staminy
     public void RegenStamina()
     {
-        if(player_stats.stamina < player_stats.maxStamina)
+        if(player_stats.stamina < player_stats.maxStamina && playerTurn && player_stats.health > 0)
         {
             player_stats.stamina += 5;
             Vyhodnoceni();
+            playerTurn = false;
+            StartCoroutine(EnemyTurn());
         }
+
+        if (miniBossHere)
+        {
+        
+            miniBossHere = false;
+            StartCoroutine(EnemyTurn());
+            return;
+        }
+
+        if (bossHere)
+        {
+            
+            bossHere = false;
+            StartCoroutine(EnemyTurn());
+            return;
+        }
+
     }
 
         //Vyhodnocení stavu
