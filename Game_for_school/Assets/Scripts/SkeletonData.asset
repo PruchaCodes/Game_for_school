@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3afcf31821480d4ab8962d9af073f14, type: 3}
-  m_Name: MinibossData
+  m_Name: SkeletonData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  enemyName: MiniBoss
-  maxHealth: 80
-  damage: 20
-  attackType: ranged
-  portrait: {fileID: 2557528089126206802, guid: 49a41bfe1559c0945be01212b3894fb2, type: 3}
-  enemyPrefab: {fileID: 4763478406632894097, guid: a9422d9b30eccaf4d900eca4187dab30, type: 3}
-  value: 20
-  isMiniboss: 1
+  enemyName: Skeleton
+  maxHealth: 25
+  damage: 6
+  attackType: meele
+  portrait: {fileID: -964824239653993824, guid: 529ec39f1a951e747bd60aaa38df3c3e, type: 3}
+  enemyPrefab: {fileID: 4763478406632894097, guid: 66d8e90b3fb26884b99b25262753f3a2, type: 3}
+  value: 10
+  isMiniboss: 0
   isBoss: 0

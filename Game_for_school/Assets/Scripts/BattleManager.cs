@@ -114,7 +114,7 @@ public class BattleManager : MonoBehaviour
     {
         if(player_stats.stamina < player_stats.maxStamina && playerTurn && player_stats.health > 0)
         {
-            player_stats.stamina += 5;
+            player_stats.stamina += 2 * (player_stats.maxStamina/player_stats.stamina);
             Vyhodnoceni();
             playerTurn = false;
             StartCoroutine(EnemyTurn());

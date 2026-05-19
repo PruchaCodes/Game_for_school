@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6551324104383457219}
   - component: {fileID: -3802377525079775360}
   m_Layer: 0
-  m_Name: MinibossPrefab_01
+  m_Name: Miniboss02Prefab
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 2557528089126206802, guid: 49a41bfe1559c0945be01212b3894fb2, type: 3}
+  m_Sprite: {fileID: -6704030795794902986, guid: 7e9ab70bfb9f11649a8ac76aaab6c5ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

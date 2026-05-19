@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: da76271b2270b1f4a9b1cb8d959981f9
+guid: 529ec39f1a951e747bd60aaa38df3c3e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7309935426003708424
-    second: miniboss_0
+      213: -964824239653993824
+    second: skeleton_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: miniboss_0
+      name: skeleton_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8f55102b574ed8a90800000000000000
-      internalID: -7309935426003708424
+      spriteID: 0a2ccb447714c92f0800000000000000
+      internalID: -964824239653993824
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      miniboss_0: -7309935426003708424
+      skeleton_0: -964824239653993824
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

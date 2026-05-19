@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3afcf31821480d4ab8962d9af073f14, type: 3}
-  m_Name: MinibossData
+  m_Name: Miniboss02Data 1
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  enemyName: MiniBoss
-  maxHealth: 80
-  damage: 20
-  attackType: ranged
-  portrait: {fileID: 2557528089126206802, guid: 49a41bfe1559c0945be01212b3894fb2, type: 3}
-  enemyPrefab: {fileID: 4763478406632894097, guid: a9422d9b30eccaf4d900eca4187dab30, type: 3}
-  value: 20
+  enemyName: Miniboss 2
+  maxHealth: 100
+  damage: 10
+  attackType: melee
+  portrait: {fileID: -6704030795794902986, guid: 7e9ab70bfb9f11649a8ac76aaab6c5ad, type: 3}
+  enemyPrefab: {fileID: 4763478406632894097, guid: 838771046bfff524e81e28a261cf0bb9, type: 3}
+  value: 30
   isMiniboss: 1
   isBoss: 0

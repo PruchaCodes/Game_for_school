@@ -6,6 +6,7 @@ public class ProgressionManager : MonoBehaviour
     public static ProgressionManager Instance;
 
     public List<EnemyData> enemyProgression = new List<EnemyData>();
+    
 
     public int currentEnemyIndex = 0;
 

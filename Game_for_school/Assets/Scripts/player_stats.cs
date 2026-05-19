@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class player_stats : MonoBehaviour
 {
-    public int health;
-    public int maxHealth;
-    public int damage;
-    public int stamina;
-    public int maxStamina;
-    public int mana;
-    public int maxMana;
+    public float health;
+    public float maxHealth;
+    public float damage;
+    public float stamina;
+    public float maxStamina;
+    public float mana;
+    public float maxMana;
 
     void Start()
     {
@@ -57,9 +57,9 @@ public class player_stats : MonoBehaviour
         if(GameManager.Instance != null)
 
         {
-            GameManager.Instance.currentHealth = health;
-            GameManager.Instance.currentStamina = stamina;
-            GameManager.Instance.currentMana = mana;
+            GameManager.Instance.currentHealth = (int)health;
+            GameManager.Instance.currentStamina = (int)stamina;
+            GameManager.Instance.currentMana = (int)mana;
         }
     }
 }
