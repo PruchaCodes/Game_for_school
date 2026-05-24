@@ -19,6 +19,7 @@ MonoBehaviour:
   portrait: {fileID: -5237074582503671387, guid: bc2365dc7175b0f47a49c347bfd029d3, type: 3}
   enemyPrefab: {fileID: 4763478406632894097, guid: a5c718fe1f13654478efbfa8028d9446, type: 3}
   value: 3
+  xpValue: 5
   isMiniboss: 0
   isBoss: 0
   enemyCount: 1

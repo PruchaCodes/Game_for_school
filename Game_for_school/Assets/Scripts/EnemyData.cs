@@ -11,6 +11,7 @@ public class EnemyData : ScriptableObject
     public Sprite portrait;
     public GameObject enemyPrefab;
     public int value;
+    public int xpValue;
     public bool isMiniboss;
     public bool isBoss;
     public int enemyCount = 1;
