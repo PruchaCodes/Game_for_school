@@ -1,56 +1,65 @@
 using UnityEngine;
 using TMPro;
 using Random = UnityEngine.Random;
+
 public class coinCounter : MonoBehaviour
 {
-
     public static coinCounter Instance;
+
     public int currentCoins = 0;
+
     public TextMeshProUGUI coinText;
-    private enemy_stats enemyStats;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Awake()
     {
         Instance = this;
-        
-        
     }
-
-    void Update()
-    {
-        if(enemyStats == null)
-        {
-            GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
-
-            if(enemy != null)
-            {
-                enemyStats = enemy.GetComponent<enemy_stats>();
-            }
-        }
-    }
-
 
     void Start()
     {
-        coinText.text = "Coins: " + currentCoins.ToString();
-
+        UpdateCoinText();
     }
 
-  
-
-    public void AddCoins(int amount)
+    public void AddCoins(enemy_stats defeatedEnemy)
     {
-        if(!enemyStats.isBoss && !enemyStats.isMiniboss && (Random.Range(0,2) > 0))
+        if(defeatedEnemy == null)
+        {
+            Debug.Log("No enemy supplied.");
+            return;
+        }
+
+        bool coinDropped = Random.Range(0,2) == 1;
+
+        if(!defeatedEnemy.isBoss && !defeatedEnemy.isMiniboss && !coinDropped)
         {
             Debug.Log("No coins found");
+            return;
+        }
+
+        int amount = 0;
+
+        if(defeatedEnemy.isBoss)
+        {
+            amount = Random.Range(30,51);
+        }
+        else if(defeatedEnemy.isMiniboss)
+        {
+            amount = Random.Range(15,31);
         }
         else
         {
-            currentCoins += amount;
-            coinText.text = "Coins: " + currentCoins.ToString();
-            Debug.Log("Looooooted!!!" + Random.Range(0,2));
-            
+            amount = Random.Range(3,11);
         }
-        
+
+        currentCoins += amount;
+
+        UpdateCoinText();
+
+        Debug.Log("Looted " + amount + " coins!");
+    }
+
+    private void UpdateCoinText()
+    {
+        coinText.text = "Coins: " + currentCoins.ToString();
     }
 }

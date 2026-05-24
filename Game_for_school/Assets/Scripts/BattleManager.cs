@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 public class BattleManager : MonoBehaviour
 {
     public player_stats player_stats;
@@ -84,10 +85,20 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
+        enemies.RemoveAll(enemy => enemy == null);
+
         if(enemies.Count > 0)
         {
             enemies[0].health -= player_stats.damage;
+
+            if(enemies[0].health <= 0)
+            {
+                Destroy(enemies[0].gameObject);
+
+                enemies.RemoveAt(0);
+            }
         }
+
         player_stats.stamina -= 10;
 
         playerTurn = false;
@@ -98,7 +109,7 @@ public class BattleManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         
-        if(enemies[0].health > 0 && player_stats.health > 0)
+        if(enemies.Count > 0 && enemies[0] != null && enemies[0].health > 0 && player_stats.health > 0)
         {
             player_stats.health -= enemies[0].damage;
             Debug.Log("Enemy attacks! Player health: " + player_stats.health);
@@ -110,11 +121,21 @@ public class BattleManager : MonoBehaviour
             Vyhodnoceni();
         }
 
-        if(enemies[0].health <= 0)
-{
-            StartCoroutine(FindFirstObjectByType<EnemySpawn>().EnemyDefeated());
-            miniBossHere = true;
-            bossHere = true;
+        // if(enemies[0].health <= 0)
+        // {
+        // StartCoroutine(FindFirstObjectByType<EnemySpawn>().EnemyDefeated());
+        // miniBossHere = true;
+        // bossHere = true;
+        // }
+
+        enemies.RemoveAll(enemy => enemy == null);
+
+        if(enemies.Count == 0)
+        {
+
+        StartCoroutine(FindFirstObjectByType<EnemySpawn>().EnemyDefeated());
+        miniBossHere = true;
+        bossHere = true;
         }
 
         playerTurn = true;
@@ -125,7 +146,9 @@ public class BattleManager : MonoBehaviour
     {
         if(player_stats.stamina < player_stats.maxStamina && playerTurn && player_stats.health > 0)
         {
-            player_stats.stamina += 2 * (player_stats.maxStamina/player_stats.stamina);
+
+            player_stats.stamina += 10;
+            player_stats.stamina = Math.Min(player_stats.stamina, player_stats.maxStamina);
             Vyhodnoceni();
             playerTurn = false;
             StartCoroutine(EnemyTurn());
@@ -152,7 +175,7 @@ public class BattleManager : MonoBehaviour
         //Vyhodnocení stavu
     public void Vyhodnoceni()
     {
-        if(enemies.Count >= 0 && enemies[0].health <= 0)
+        if(enemies.Count > 0 && enemies[0] != null && enemies[0].health <= 0)
         {
             Debug.Log("Enemy defeated!");
         }

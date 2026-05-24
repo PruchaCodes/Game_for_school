@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemySpawn : MonoBehaviour
 {
-    private GameObject currentEnemy;
+    private List<GameObject> currentEnemies = new List<GameObject>();
     private int value;
 
     void Start()
@@ -23,6 +24,7 @@ public class EnemySpawn : MonoBehaviour
         pos.x += i * 2f;
 
         GameObject enemy = Instantiate(enemyData.enemyPrefab, pos, Quaternion.identity);
+        currentEnemies.Add(enemy);
 
         enemy_stats stats = enemy.GetComponent<enemy_stats>();
 
@@ -44,7 +46,16 @@ public class EnemySpawn : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         coinCounter.Instance.AddCoins(value);
-        Destroy(gameObject);
+        foreach(GameObject enemy in currentEnemies)
+        {
+            if(enemy != null)
+            {
+                Destroy(enemy);
+            }
+        }
+
+        currentEnemies.Clear();
+        
 
         ProgressionManager.Instance.AdvanceEnemy();
 
