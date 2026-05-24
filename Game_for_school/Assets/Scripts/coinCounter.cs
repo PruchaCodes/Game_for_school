@@ -7,7 +7,6 @@ public class coinCounter : MonoBehaviour
     public static coinCounter Instance;
 
     public int currentCoins = 0;
-
     public TextMeshProUGUI coinText;
 
     void Awake()
@@ -20,46 +19,30 @@ public class coinCounter : MonoBehaviour
         UpdateCoinText();
     }
 
-    public void AddCoins(enemy_stats defeatedEnemy)
+    public void AddCoins(EnemyData defeatedEnemyData)
     {
-        if(defeatedEnemy == null)
+        if (defeatedEnemyData == null)
         {
-            Debug.Log("No enemy supplied.");
+            Debug.Log("No enemy data supplied.");
             return;
         }
 
-        bool coinDropped = Random.Range(0,2) == 1;
+        bool coinDropped = Random.Range(0, 2) == 1;
 
-        if(!defeatedEnemy.isBoss && !defeatedEnemy.isMiniboss && !coinDropped)
+        if (!defeatedEnemyData.isBoss && !defeatedEnemyData.isMiniboss && !coinDropped)
         {
             Debug.Log("No coins found");
             return;
         }
 
-        int amount = 0;
-
-        if(defeatedEnemy.isBoss)
-        {
-            amount = Random.Range(30,51);
-        }
-        else if(defeatedEnemy.isMiniboss)
-        {
-            amount = Random.Range(15,31);
-        }
-        else
-        {
-            amount = Random.Range(3,11);
-        }
-
-        currentCoins += amount;
-
+        currentCoins += defeatedEnemyData.value;
         UpdateCoinText();
 
-        Debug.Log("Looted " + amount + " coins!");
+        Debug.Log("Looted " + defeatedEnemyData.value + " coins!");
     }
 
     private void UpdateCoinText()
     {
-        coinText.text = "Coins: " + currentCoins.ToString();
+        coinText.text = "Coins: " + currentCoins;
     }
 }

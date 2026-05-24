@@ -5,60 +5,58 @@ using System.Collections.Generic;
 public class EnemySpawn : MonoBehaviour
 {
     private List<GameObject> currentEnemies = new List<GameObject>();
-    private int value;
+    private EnemyData currentEnemyData;
 
     void Start()
     {
-        EnemyData enemy = ProgressionManager.Instance.GetCurrentEnemy();
-        SpawnEnemy(enemy.enemyCount);
+        SpawnCurrentEnemy();
     }
 
-    public void SpawnEnemy(int amount)
-{
-    EnemyData enemyData = ProgressionManager.Instance.GetCurrentEnemy();
-
-    for(int i=0;i<amount;i++)
+    public void SpawnCurrentEnemy()
     {
-        Vector3 pos = transform.position;
+        currentEnemyData = ProgressionManager.Instance.GetCurrentEnemy();
 
-        pos.x += i * 2f;
+        for (int i = 0; i < currentEnemyData.enemyCount; i++)
+        {
+            Vector3 pos = transform.position;
+            pos.x += i * 2f;
 
-        GameObject enemy = Instantiate(enemyData.enemyPrefab, pos, Quaternion.identity);
-        currentEnemies.Add(enemy);
+            GameObject enemy = Instantiate(
+                currentEnemyData.enemyPrefab,
+                pos,
+                Quaternion.identity
+            );
 
-        enemy_stats stats = enemy.GetComponent<enemy_stats>();
+            currentEnemies.Add(enemy);
 
-        stats.maxHealth = enemyData.maxHealth;
+            enemy_stats stats = enemy.GetComponent<enemy_stats>();
 
-        stats.health = enemyData.maxHealth;
-
-        stats.damage = enemyData.damage;
-
-        stats.isMiniboss = enemyData.isMiniboss;
-
-        stats.isBoss = enemyData.isBoss;
+            stats.maxHealth = currentEnemyData.maxHealth;
+            stats.health = currentEnemyData.maxHealth;
+            stats.damage = currentEnemyData.damage;
+            stats.isMiniboss = currentEnemyData.isMiniboss;
+            stats.isBoss = currentEnemyData.isBoss;
+        }
     }
-}
 
     public IEnumerator EnemyDefeated()
     {
-        
         yield return new WaitForSeconds(2f);
 
-        coinCounter.Instance.AddCoins(value);
-        foreach(GameObject enemy in currentEnemies)
+        coinCounter.Instance.AddCoins(currentEnemyData);
+
+        foreach (GameObject enemy in currentEnemies)
         {
-            if(enemy != null)
+            if (enemy != null)
             {
                 Destroy(enemy);
             }
         }
 
         currentEnemies.Clear();
-        
 
         ProgressionManager.Instance.AdvanceEnemy();
 
-        SpawnEnemy(ProgressionManager.Instance.GetCurrentEnemy().enemyCount);
+        SpawnCurrentEnemy();
     }
 }
