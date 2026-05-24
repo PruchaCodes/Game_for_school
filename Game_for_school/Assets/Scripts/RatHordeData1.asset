@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3afcf31821480d4ab8962d9af073f14, type: 3}
-  m_Name: RatData
+  m_Name: RatHordeData1
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  enemyName: Rat
+  enemyName: RatHorde1
   maxHealth: 10
   damage: 2
   attackType: meele
@@ -21,4 +21,4 @@ MonoBehaviour:
   value: 3
   isMiniboss: 0
   isBoss: 0
-  enemyCount: 1
+  enemyCount: 2

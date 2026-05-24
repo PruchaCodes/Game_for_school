@@ -219,12 +219,14 @@ MonoBehaviour:
   enemyProgression:
   - {fileID: 11400000, guid: 8ea5974830445fb4b956579041e35c3a, type: 2}
   - {fileID: 11400000, guid: cd552340c0f6c0a45a9162dc505667f0, type: 2}
+  - {fileID: 11400000, guid: 51ac72efe3525b14684c9a555c0be33b, type: 2}
   - {fileID: 11400000, guid: 8ea5974830445fb4b956579041e35c3a, type: 2}
   - {fileID: 11400000, guid: 21b8d4b9db348e5478dd8da13bdaf2a7, type: 2}
   - {fileID: 11400000, guid: f57a139ae874fc4418c5d55e29514b0e, type: 2}
+  - {fileID: 11400000, guid: 61832a155043130488c1252db4d7256a, type: 2}
   - {fileID: 11400000, guid: e2b3cc425319cc5498631bc3fabd9399, type: 2}
   - {fileID: 11400000, guid: c581ea4df42c1a24b9ad801e4c087dbe, type: 2}
-  currentEnemyIndex: 4
+  currentEnemyIndex: 0
 --- !u!4 &107188162
 Transform:
   m_ObjectHideFlags: 0
@@ -786,7 +788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleManager
   player_stats: {fileID: 0}
-  enemy_stats: {fileID: 0}
+  enemies: []
   playerTurn: 1
 --- !u!4 &744486537
 Transform:

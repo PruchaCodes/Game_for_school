@@ -8,41 +8,35 @@ public class EnemySpawn : MonoBehaviour
 
     void Start()
     {
-        SpawnEnemy();
+        EnemyData enemy = ProgressionManager.Instance.GetCurrentEnemy();
+        SpawnEnemy(enemy.enemyCount);
     }
 
-    public void SpawnEnemy()
+    public void SpawnEnemy(int amount)
+{
+    EnemyData enemyData = ProgressionManager.Instance.GetCurrentEnemy();
+
+    for(int i=0;i<amount;i++)
     {
-        EnemyData enemyData = ProgressionManager.Instance.GetCurrentEnemy();
+        Vector3 pos = transform.position;
 
-        currentEnemy = Instantiate(enemyData.enemyPrefab, transform.position, Quaternion.identity);
+        pos.x += i * 2f;
 
-        enemy_stats stats = currentEnemy.GetComponent<enemy_stats>();
+        GameObject enemy = Instantiate(enemyData.enemyPrefab, pos, Quaternion.identity);
+
+        enemy_stats stats = enemy.GetComponent<enemy_stats>();
 
         stats.maxHealth = enemyData.maxHealth;
 
         stats.health = enemyData.maxHealth;
 
         stats.damage = enemyData.damage;
-        value = enemyData.value;
+
         stats.isMiniboss = enemyData.isMiniboss;
+
         stats.isBoss = enemyData.isBoss;
-
-        if(stats.isMiniboss)
-        {
-            Debug.Log("Miniboss spawned: " + enemyData.enemyName);
-        }
-        else if(stats.isBoss)
-        {
-            Debug.Log("Boss spawned: " + enemyData.enemyName);
-        }
-        else
-        {
-            Debug.Log("Enemy spawned: " + enemyData.enemyName);
-        }
-
-        
     }
+}
 
     public IEnumerator EnemyDefeated()
     {
@@ -50,10 +44,10 @@ public class EnemySpawn : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         coinCounter.Instance.AddCoins(value);
-        Destroy(currentEnemy);
+        Destroy(gameObject);
 
         ProgressionManager.Instance.AdvanceEnemy();
 
-        SpawnEnemy();
+        SpawnEnemy(ProgressionManager.Instance.GetCurrentEnemy().enemyCount);
     }
 }

@@ -1,11 +1,11 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 public class BattleManager : MonoBehaviour
 {
     public player_stats player_stats;
-    public enemy_stats enemy_stats;
+    public List<enemy_stats> enemies = new List<enemy_stats>();
 
     public bool playerTurn = true;
     private bool miniBossHere = true;
@@ -18,10 +18,18 @@ public class BattleManager : MonoBehaviour
             player_stats = GameObject.FindGameObjectWithTag("Player").GetComponent<player_stats>();
         }
 
-        if (enemy_stats == null)
+        enemies.Clear();
+
+        GameObject[] foundEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach(GameObject enemy in foundEnemies)
         {
-            enemy_stats = GameObject.FindGameObjectWithTag("Enemy").GetComponent<enemy_stats>();
-            
+            enemy_stats stats = enemy.GetComponent<enemy_stats>();
+
+            if(stats != null)
+            {
+                enemies.Add(stats);
+            }
         }
 
         
@@ -32,7 +40,7 @@ public class BattleManager : MonoBehaviour
 
         if (miniBossHere)
         {
-           if(enemy_stats.isMiniboss)
+           if(enemies[0].isMiniboss)
             {
                 miniBossHere = false;
                 StartCoroutine(EnemyTurn());
@@ -44,7 +52,7 @@ public class BattleManager : MonoBehaviour
         if (bossHere)
         {
            
-            if(enemy_stats.isBoss)
+            if(enemies[0].isBoss)
             {
                 bossHere = false;
                 StartCoroutine(EnemyTurn());
@@ -64,7 +72,7 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        if(enemy_stats.health <= 0)
+        if(enemies.Count == 0)
         {
             Vyhodnoceni();
             return;
@@ -76,7 +84,10 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        enemy_stats.health -= player_stats.damage;
+        if(enemies.Count > 0)
+        {
+            enemies[0].health -= player_stats.damage;
+        }
         player_stats.stamina -= 10;
 
         playerTurn = false;
@@ -87,9 +98,9 @@ public class BattleManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         
-        if(enemy_stats.health > 0 && player_stats.health > 0)
+        if(enemies[0].health > 0 && player_stats.health > 0)
         {
-            player_stats.health -= enemy_stats.damage;
+            player_stats.health -= enemies[0].damage;
             Debug.Log("Enemy attacks! Player health: " + player_stats.health);
         }
 
@@ -99,7 +110,7 @@ public class BattleManager : MonoBehaviour
             Vyhodnoceni();
         }
 
-        if(enemy_stats.health <= 0)
+        if(enemies[0].health <= 0)
 {
             StartCoroutine(FindFirstObjectByType<EnemySpawn>().EnemyDefeated());
             miniBossHere = true;
@@ -141,7 +152,7 @@ public class BattleManager : MonoBehaviour
         //Vyhodnocení stavu
     public void Vyhodnoceni()
     {
-        if(enemy_stats.health <= 0)
+        if(enemies.Count >= 0 && enemies[0].health <= 0)
         {
             Debug.Log("Enemy defeated!");
         }
