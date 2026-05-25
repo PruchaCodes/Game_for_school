@@ -6,10 +6,20 @@ public class EnemySpawn : MonoBehaviour
 {
     private List<GameObject> currentEnemies = new List<GameObject>();
     private EnemyData currentEnemyData;
+    public lvlCounter lvlCounter;
 
     void Start()
     {
+        lvlCounter = GameObject.FindGameObjectWithTag("LevelCounter").GetComponent<lvlCounter>();
         SpawnCurrentEnemy();
+    }
+
+    void Update()
+    {
+        if (lvlCounter == null)
+        {
+            lvlCounter = GameObject.FindGameObjectWithTag("LevelCounter").GetComponent<lvlCounter>();
+        }
     }
 
     public void SpawnCurrentEnemy()
@@ -31,9 +41,9 @@ public class EnemySpawn : MonoBehaviour
 
             enemy_stats stats = enemy.GetComponent<enemy_stats>();
 
-            stats.maxHealth = currentEnemyData.maxHealth;
-            stats.health = currentEnemyData.maxHealth;
-            stats.damage = currentEnemyData.damage;
+            stats.maxHealth = currentEnemyData.maxHealth + (lvlCounter.currentLevel == 2 ? 10 : 0) + (lvlCounter.currentLevel == 4 ? 20 : 0) + (lvlCounter.currentLevel == 6 ? 20 : 0) + (lvlCounter.currentLevel == 8 ? 30 : 0);
+            stats.health = stats.maxHealth;
+            stats.damage = currentEnemyData.damage + lvlCounter.currentLevel;
             stats.isMiniboss = currentEnemyData.isMiniboss;
             stats.isBoss = currentEnemyData.isBoss;
         }
@@ -41,9 +51,11 @@ public class EnemySpawn : MonoBehaviour
 
     public IEnumerator EnemyDefeated()
     {
+        coinCounter.Instance.AddCoins(currentEnemyData);
+        lvlCounter.Instance.currentExp += currentEnemyData.xpValue;        
+
         yield return new WaitForSeconds(2f);
 
-        coinCounter.Instance.AddCoins(currentEnemyData);
 
         foreach (GameObject enemy in currentEnemies)
         {

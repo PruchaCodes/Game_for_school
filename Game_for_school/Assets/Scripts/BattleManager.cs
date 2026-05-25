@@ -121,12 +121,7 @@ public class BattleManager : MonoBehaviour
             Vyhodnoceni();
         }
 
-        // if(enemies[0].health <= 0)
-        // {
-        // StartCoroutine(FindFirstObjectByType<EnemySpawn>().EnemyDefeated());
-        // miniBossHere = true;
-        // bossHere = true;
-        // }
+        
 
         enemies.RemoveAll(enemy => enemy == null);
 
