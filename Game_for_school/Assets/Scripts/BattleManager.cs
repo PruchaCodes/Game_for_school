@@ -12,6 +12,7 @@ public class BattleManager : MonoBehaviour
     private bool miniBossHere = true;
     private bool bossHere = true;
     public GameOverScreen gameOverScreen;
+    public VictoryScreen victoryScreen;
 
     void Update()
     {
@@ -62,6 +63,8 @@ public class BattleManager : MonoBehaviour
             }
         }
 
+        
+
         if (!playerTurn)
         {
             Vyhodnoceni();
@@ -92,12 +95,19 @@ public class BattleManager : MonoBehaviour
         {
             enemies[0].health -= player_stats.damage;
 
-            if(enemies[0].health <= 0)
+            if(enemies[0].isBoss && enemies[0].health <= 0)
+            {
+                Victory();
+                Vyhodnoceni();
+                return;
+            }
+            else if(enemies[0].health <= 0)
             {
                 Destroy(enemies[0].gameObject);
 
                 enemies.RemoveAt(0);
             }
+
         }
 
         player_stats.stamina -= 10;
@@ -196,5 +206,10 @@ public class BattleManager : MonoBehaviour
     public void GameOver()
     {
         gameOverScreen.Setup();
+    }
+
+    public void Victory()
+    {
+        victoryScreen.Setup();
     }
 }
