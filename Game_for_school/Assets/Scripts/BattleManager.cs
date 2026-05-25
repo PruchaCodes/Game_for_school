@@ -11,6 +11,7 @@ public class BattleManager : MonoBehaviour
     public bool playerTurn = true;
     private bool miniBossHere = true;
     private bool bossHere = true;
+    public GameOverScreen gameOverScreen;
 
     void Update()
     {
@@ -117,7 +118,7 @@ public class BattleManager : MonoBehaviour
 
         if(player_stats.health <= 0)
         {
-            
+            GameOver();
             Vyhodnoceni();
         }
 
@@ -183,11 +184,17 @@ public class BattleManager : MonoBehaviour
         if(player_stats.health <= 0)
         {
             Debug.Log("You have been defeated!");
+            GameOver();
         }
 
         if(player_stats.stamina >= player_stats.maxStamina)
         {
             Debug.Log("Stamina is full!");
         }
+    }
+
+    public void GameOver()
+    {
+        gameOverScreen.Setup();
     }
 }
