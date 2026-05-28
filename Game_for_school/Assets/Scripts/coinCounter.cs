@@ -41,7 +41,7 @@ public class coinCounter : MonoBehaviour
         Debug.Log("Looted " + defeatedEnemyData.value + " coins!");
     }
 
-    private void UpdateCoinText()
+    public void UpdateCoinText()
     {
         coinText.text = "Coins: " + currentCoins;
     }

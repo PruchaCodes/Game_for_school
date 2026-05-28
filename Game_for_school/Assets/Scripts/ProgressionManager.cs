@@ -6,8 +6,6 @@ public class ProgressionManager : MonoBehaviour
     public static ProgressionManager Instance;
 
     public List<EnemyData> enemyProgression = new List<EnemyData>();
-    
-
     public int currentEnemyIndex = 0;
 
     void Awake()
@@ -17,6 +15,11 @@ public class ProgressionManager : MonoBehaviour
 
     public EnemyData GetCurrentEnemy()
     {
+        if (currentEnemyIndex >= enemyProgression.Count)
+        {
+            return null;
+        }
+
         return enemyProgression[currentEnemyIndex];
     }
 

@@ -13,6 +13,7 @@ public class BattleManager : MonoBehaviour
     private bool bossHere = true;
     public GameOverScreen gameOverScreen;
     public VictoryScreen victoryScreen;
+    public coinCounter coinCounter;
 
     void Update()
     {
@@ -211,5 +212,23 @@ public class BattleManager : MonoBehaviour
     public void Victory()
     {
         victoryScreen.Setup();
+    }
+
+    public void HealPlayer()
+    {
+
+        if(coinCounter.Instance.currentCoins >= 20 && player_stats.health > 0)
+        {
+            player_stats.health = player_stats.maxHealth;
+            coinCounter.Instance.currentCoins -= 20;
+            coinCounter.Instance.UpdateCoinText();
+        }
+        else
+        {
+            Debug.Log("Not enough coins to heal!");
+            return;
+        }
+        
+
     }
 }

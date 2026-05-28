@@ -15,4 +15,5 @@ public class EnemyData : ScriptableObject
     public bool isMiniboss;
     public bool isBoss;
     public int enemyCount = 1;
+    public bool isVillage;
 }

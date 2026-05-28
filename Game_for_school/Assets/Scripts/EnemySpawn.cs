@@ -6,25 +6,45 @@ public class EnemySpawn : MonoBehaviour
 {
     private List<GameObject> currentEnemies = new List<GameObject>();
     private EnemyData currentEnemyData;
+
     public lvlCounter lvlCounter;
+    public GameObject villagePanel;
+    public GameObject combatButtonsPanel;
 
     void Start()
     {
         lvlCounter = GameObject.FindGameObjectWithTag("LevelCounter").GetComponent<lvlCounter>();
-        SpawnCurrentEnemy();
+        SpawnCurrentEncounter();
     }
 
-    void Update()
-    {
-        if (lvlCounter == null)
-        {
-            lvlCounter = GameObject.FindGameObjectWithTag("LevelCounter").GetComponent<lvlCounter>();
-        }
-    }
-
-    public void SpawnCurrentEnemy()
+    public void SpawnCurrentEncounter()
     {
         currentEnemyData = ProgressionManager.Instance.GetCurrentEnemy();
+
+        if (currentEnemyData == null)
+        {
+            Debug.Log("No more progression nodes.");
+            return;
+        }
+
+        if (villagePanel != null)
+            villagePanel.SetActive(false);
+
+        if (combatButtonsPanel != null)
+            combatButtonsPanel.SetActive(true);
+
+        if (currentEnemyData.isVillage)
+        {
+            Debug.Log("Village reached.");
+
+            if (combatButtonsPanel != null)
+                combatButtonsPanel.SetActive(false);
+
+            if (villagePanel != null)
+                villagePanel.SetActive(true);
+
+            return;
+        }
 
         for (int i = 0; i < currentEnemyData.enemyCount; i++)
         {
@@ -52,23 +72,30 @@ public class EnemySpawn : MonoBehaviour
     public IEnumerator EnemyDefeated()
     {
         coinCounter.Instance.AddCoins(currentEnemyData);
-        lvlCounter.Instance.currentExp += currentEnemyData.xpValue;        
+        lvlCounter.Instance.currentExp += currentEnemyData.xpValue;
 
         yield return new WaitForSeconds(2f);
-
 
         foreach (GameObject enemy in currentEnemies)
         {
             if (enemy != null)
-            {
                 Destroy(enemy);
-            }
         }
 
         currentEnemies.Clear();
 
         ProgressionManager.Instance.AdvanceEnemy();
 
-        SpawnCurrentEnemy();
+        SpawnCurrentEncounter();
+    }
+
+    public void LeaveVillage()
+    {
+        if (villagePanel != null)
+            villagePanel.SetActive(false);
+
+        ProgressionManager.Instance.AdvanceEnemy();
+
+        SpawnCurrentEncounter();
     }
 }
