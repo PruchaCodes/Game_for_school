@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Miniboss02Data 1
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: Miniboss 2
-  maxHealth: 100
-  damage: 10
+  maxHealth: 110
+  damage: 18
   attackType: melee
   portrait: {fileID: -6704030795794902986, guid: 7e9ab70bfb9f11649a8ac76aaab6c5ad, type: 3}
   enemyPrefab: {fileID: 4763478406632894097, guid: 838771046bfff524e81e28a261cf0bb9, type: 3}
@@ -23,3 +23,4 @@ MonoBehaviour:
   isMiniboss: 1
   isBoss: 0
   enemyCount: 1
+  isVillage: 0

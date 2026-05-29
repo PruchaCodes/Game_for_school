@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BossData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: Boss
-  maxHealth: 200
-  damage: 35
+  maxHealth: 180
+  damage: 25
   attackType: melee
   portrait: {fileID: 0}
   enemyPrefab: {fileID: 4763478406632894097, guid: fedbe1a7b4a8de0459001d91f11db09c, type: 3}

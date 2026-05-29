@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GoblinData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: Goblin
-  maxHealth: 30
-  damage: 5
+  maxHealth: 45
+  damage: 7
   attackType: meele
   portrait: {fileID: 2572365745140355499, guid: 770882959906edd479d4f3ec9f306ea8, type: 3}
   enemyPrefab: {fileID: 4763478406632894097, guid: 346be2b7c239ec04c98cac2fa49e8117, type: 3}
@@ -23,3 +23,4 @@ MonoBehaviour:
   isMiniboss: 0
   isBoss: 0
   enemyCount: 1
+  isVillage: 0

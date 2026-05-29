@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GhoulData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: Ghoul
-  maxHealth: 40
-  damage: 10
+  maxHealth: 65
+  damage: 12
   attackType: meele
   portrait: {fileID: -3270371465853829570, guid: 2473a621d214c8d4aa04f7451d9475ed, type: 3}
   enemyPrefab: {fileID: 4763478406632894097, guid: 6057c86263b74fc43b324d2e2c971341, type: 3}
@@ -23,3 +23,4 @@ MonoBehaviour:
   isMiniboss: 0
   isBoss: 0
   enemyCount: 1
+  isVillage: 0

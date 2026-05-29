@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MinibossData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: MiniBoss
-  maxHealth: 80
+  maxHealth: 130
   damage: 20
   attackType: ranged
   portrait: {fileID: 2557528089126206802, guid: 49a41bfe1559c0945be01212b3894fb2, type: 3}
@@ -23,3 +23,4 @@ MonoBehaviour:
   isMiniboss: 1
   isBoss: 0
   enemyCount: 1
+  isVillage: 0

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RatHordeData1
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: RatHorde1
-  maxHealth: 10
-  damage: 2
+  maxHealth: 20
+  damage: 4
   attackType: meele
   portrait: {fileID: -5237074582503671387, guid: bc2365dc7175b0f47a49c347bfd029d3, type: 3}
   enemyPrefab: {fileID: 4763478406632894097, guid: a5c718fe1f13654478efbfa8028d9446, type: 3}
@@ -23,3 +23,4 @@ MonoBehaviour:
   isMiniboss: 0
   isBoss: 0
   enemyCount: 2
+  isVillage: 0
