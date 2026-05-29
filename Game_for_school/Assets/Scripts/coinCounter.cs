@@ -8,6 +8,7 @@ public class coinCounter : MonoBehaviour
 
     public int currentCoins = 0;
     public TextMeshProUGUI coinText;
+    public TextMeshProUGUI comentatoryText;
 
     void Awake()
     {
@@ -31,14 +32,14 @@ public class coinCounter : MonoBehaviour
 
         if (!defeatedEnemyData.isBoss && !defeatedEnemyData.isMiniboss && !coinDropped)
         {
-            Debug.Log("No coins found");
+            comentatoryText.SetText("No coins found");
             return;
         }
 
         currentCoins += defeatedEnemyData.value;
         UpdateCoinText();
 
-        Debug.Log("Looted " + defeatedEnemyData.value + " coins!");
+        comentatoryText.SetText("Looted " + defeatedEnemyData.value + " coins!");
     }
 
     public void UpdateCoinText()

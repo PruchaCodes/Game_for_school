@@ -3,6 +3,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using Random = UnityEngine.Random;
+using TMPro;
 public class BattleManager : MonoBehaviour
 {
     public player_stats player_stats;
@@ -14,6 +17,11 @@ public class BattleManager : MonoBehaviour
     public GameOverScreen gameOverScreen;
     public VictoryScreen victoryScreen;
     public coinCounter coinCounter;
+    public TMPro.TextMeshProUGUI comentatoryText;
+    int i = 10;
+    int iBoss = 100;
+    int sanceMaxHp = 100;
+    int sanceMaxHPRange = 1;
 
     void Update()
     {
@@ -37,6 +45,8 @@ public class BattleManager : MonoBehaviour
         }
 
         
+
+        
     }
         // Hráč útočí na nepřítele, pokud je jeho tah a má dostatek staminy
     public void PlayerAttack()
@@ -46,6 +56,7 @@ public class BattleManager : MonoBehaviour
         {
            if(enemies[0].isMiniboss)
             {
+                comentatoryText.SetText("Miniboss appered! He attacks immediately!");
                 miniBossHere = false;
                 StartCoroutine(EnemyTurn());
                 return;
@@ -58,6 +69,7 @@ public class BattleManager : MonoBehaviour
            
             if(enemies[0].isBoss)
             {
+                comentatoryText.SetText("Boss appered! He attacks immediately!");
                 bossHere = false;
                 StartCoroutine(EnemyTurn());
                 return;
@@ -94,7 +106,35 @@ public class BattleManager : MonoBehaviour
 
         if(enemies.Count > 0)
         {
-            enemies[0].health -= player_stats.damage;
+
+            // Šance na zásah bosse
+            if(enemies.Count > 0 && enemies[0] != null && enemies[0].health > 0 && player_stats.health > 0 && enemies[0].isBoss)
+            {
+                
+                if(Random.Range(0, i) < 5)
+                {
+                    enemies[0].health -= player_stats.damage;
+                    
+                    i++;
+                    comentatoryText.SetText("Boss hit! Chance to hit droped by 10%");
+                }
+                else
+                {
+                    if (i > 1)
+                    {
+                        i--;
+                    }
+                    comentatoryText.SetText("Boss missed! Chance to hit increased by 10%");
+                }
+
+                
+
+            }
+            else if(enemies.Count > 0 && enemies[0] != null && enemies[0].health > 0 && player_stats.health > 0)
+            {
+                enemies[0].health -= player_stats.damage;
+                comentatoryText.SetText("Player attacks! Damage dealt: " + player_stats.damage);
+            }
 
             if(enemies[0].isBoss && enemies[0].health <= 0)
             {
@@ -119,12 +159,49 @@ public class BattleManager : MonoBehaviour
         // Nepřítel útočí na hráče, pokud je jeho tah a hráč je stále naživu
     IEnumerator EnemyTurn()
     {
+
+        
+        comentatoryText.SetText("Enemy's turn!");
+        
         yield return new WaitForSeconds(1.5f);
         
-        if(enemies.Count > 0 && enemies[0] != null && enemies[0].health > 0 && player_stats.health > 0)
+        if(enemies.Count > 0 && enemies[0] != null && enemies[0].health > 0 && player_stats.health > 0 && enemies[0].isBoss)
+        {
+            
+            if(Random.Range(0, iBoss) < 20)
+            {
+                player_stats.health -= enemies[0].damage*2;
+                iBoss+=5;
+                comentatoryText.SetText("Critical hit! Chance to crit droped by 5%. Dmg dealt to player: " + enemies[0].damage*2);
+            }
+            else
+            {
+                if(iBoss > 15)
+                {
+                    iBoss-=15;
+                    comentatoryText.SetText("No Critical hit! Chance to crit increased by 15%");
+                }
+                player_stats.health -= enemies[0].damage;
+                
+            }
+
+            if(enemies[0].health < enemies[0].maxHealth * 0.05f)
+            {
+                sanceMaxHPRange = 50;
+                comentatoryText.SetText("Bosses chance to heal to max hp increased to 50%");
+            }
+
+            if(Random.Range(0, sanceMaxHp) < sanceMaxHPRange)
+            {
+                enemies[0].health = enemies[0].maxHealth;
+                comentatoryText.SetText("Boss healed himself to max HP!");
+            }
+
+        }
+        else if(enemies.Count > 0 && enemies[0] != null && enemies[0].health > 0 && player_stats.health > 0)
         {
             player_stats.health -= enemies[0].damage;
-            Debug.Log("Enemy attacks! Player health: " + player_stats.health);
+            comentatoryText.SetText("Enemy attacks! Damage dealt: " + enemies[0].damage);
         }
 
         if(player_stats.health <= 0)
@@ -153,6 +230,7 @@ public class BattleManager : MonoBehaviour
     {
         if(player_stats.stamina < player_stats.maxStamina && playerTurn && player_stats.health > 0)
         {
+            comentatoryText.SetText("Regenerating stamina by 10!");
 
             player_stats.stamina += 10;
             player_stats.stamina = Math.Min(player_stats.stamina, player_stats.maxStamina);
@@ -172,6 +250,7 @@ public class BattleManager : MonoBehaviour
         if (bossHere)
         {
             
+            
             bossHere = false;
             StartCoroutine(EnemyTurn());
             return;
@@ -184,12 +263,12 @@ public class BattleManager : MonoBehaviour
     {
         if(enemies.Count > 0 && enemies[0] != null && enemies[0].health <= 0)
         {
-            Debug.Log("Enemy defeated!");
+            comentatoryText.SetText("Enemy defeated!");
         }
 
         if(player_stats.stamina < 10)
         {
-            Debug.Log("Not enough stamina to attack!");
+            comentatoryText.SetText("Not enough stamina to attack!");
         }
 
         if(player_stats.health <= 0)
@@ -200,7 +279,7 @@ public class BattleManager : MonoBehaviour
 
         if(player_stats.stamina >= player_stats.maxStamina)
         {
-            Debug.Log("Stamina is full!");
+            comentatoryText.SetText("Stamina is full!");
         }
     }
 
@@ -225,7 +304,7 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough coins to heal!");
+            comentatoryText.SetText("Not enough coins to heal!");
             return;
         }
         

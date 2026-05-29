@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class EnemySpawn : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class EnemySpawn : MonoBehaviour
     public lvlCounter lvlCounter;
     public GameObject villagePanel;
     public GameObject combatButtonsPanel;
+    public TextMeshProUGUI comentatoryText;
 
     void Start()
     {
@@ -61,9 +63,9 @@ public class EnemySpawn : MonoBehaviour
 
             enemy_stats stats = enemy.GetComponent<enemy_stats>();
 
-            stats.maxHealth = currentEnemyData.maxHealth + (lvlCounter.currentLevel == 2 ? 10 : 0) + (lvlCounter.currentLevel == 4 ? 20 : 0) + (lvlCounter.currentLevel == 6 ? 20 : 0) + (lvlCounter.currentLevel == 8 ? 30 : 0);
+            stats.maxHealth = currentEnemyData.maxHealth;
             stats.health = stats.maxHealth;
-            stats.damage = currentEnemyData.damage + lvlCounter.currentLevel;
+            stats.damage = currentEnemyData.damage;
             stats.isMiniboss = currentEnemyData.isMiniboss;
             stats.isBoss = currentEnemyData.isBoss;
         }
@@ -71,6 +73,7 @@ public class EnemySpawn : MonoBehaviour
 
     public IEnumerator EnemyDefeated()
     {
+        
         coinCounter.Instance.AddCoins(currentEnemyData);
         lvlCounter.Instance.currentExp += currentEnemyData.xpValue;
 
@@ -82,6 +85,8 @@ public class EnemySpawn : MonoBehaviour
                 Destroy(enemy);
         }
 
+        comentatoryText.SetText("");
+
         currentEnemies.Clear();
 
         ProgressionManager.Instance.AdvanceEnemy();
@@ -91,6 +96,7 @@ public class EnemySpawn : MonoBehaviour
 
     public void LeaveVillage()
     {
+        comentatoryText.SetText("");
         if (villagePanel != null)
             villagePanel.SetActive(false);
 

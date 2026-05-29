@@ -9,6 +9,7 @@ public class PlayerUIController : MonoBehaviour
     public EnemySpawn enemySpawn;
     public coinCounter coinCounter;
     public player_stats player_stats;
+    public TMPro.TextMeshProUGUI comentatoryText;
     void Update()
     {
         if (battle_manager == null)
@@ -62,7 +63,7 @@ public class PlayerUIController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough coins to heal or already at full health.");
+            comentatoryText.SetText("Not enough coins to heal or already at full health.");
         }
         
     }
@@ -78,7 +79,7 @@ public class PlayerUIController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough coins to increase max health or already at full health.");
+            comentatoryText.SetText("Not enough coins to increase max health or already at full health.");
         }
     }
 
@@ -94,7 +95,7 @@ public class PlayerUIController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough coins to increase max stamina or already at full stamina.");
+            comentatoryText.SetText("Not enough coins to increase max stamina or already at full stamina.");
         }
     }
 
@@ -110,7 +111,7 @@ public class PlayerUIController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough coins to increase damage.");
+            comentatoryText.SetText("Not enough coins to increase damage.");
         }
     }
 }
