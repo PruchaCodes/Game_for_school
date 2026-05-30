@@ -16,7 +16,7 @@ MonoBehaviour:
   maxHealth: 180
   damage: 25
   attackType: melee
-  portrait: {fileID: 0}
+  portrait: {fileID: 8873461726653796962, guid: 75f0059243fbca4429b774615032cbc3, type: 3}
   enemyPrefab: {fileID: 4763478406632894097, guid: fedbe1a7b4a8de0459001d91f11db09c, type: 3}
   value: 60
   xpValue: 100
