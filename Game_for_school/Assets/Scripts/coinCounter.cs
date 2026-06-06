@@ -9,6 +9,8 @@ public class coinCounter : MonoBehaviour
     public int currentCoins = 0;
     public TextMeshProUGUI coinText;
     public TextMeshProUGUI comentatoryText;
+    public TextMeshProUGUI coinTextShop;
+    public TextMeshProUGUI comentatoryTextShop;
 
     void Awake()
     {
@@ -45,5 +47,6 @@ public class coinCounter : MonoBehaviour
     public void UpdateCoinText()
     {
         coinText.text = "Coins: " + currentCoins;
+        coinTextShop.text = "Coins: " + currentCoins;
     }
 }

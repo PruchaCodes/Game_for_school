@@ -561,34 +561,55 @@ public class BattleManager : MonoBehaviour
         //Regenerace staminy
     public void RegenStamina()
     {
-        if(player_stats.stamina < player_stats.maxStamina && playerTurn && player_stats.health > 0)
-        {
-            comentatoryText.SetText("Regenerating stamina by 10!");
+        if (CheckBossFirstAttack())
+            return;
 
-            player_stats.stamina += 10;
-            player_stats.stamina = Math.Min(player_stats.stamina, player_stats.maxStamina);
+        if (!playerTurn || player_stats.health <= 0)
+        {
             Vyhodnoceni();
+            return;
+        }
+
+        if (player_stats.stamina >= player_stats.maxStamina)
+        {
+            Vyhodnoceni();
+            return;
+        }
+
+        comentatoryText.SetText("Regenerating stamina by 10!");
+        player_stats.stamina += 10;
+        player_stats.stamina = Math.Min(player_stats.stamina, player_stats.maxStamina);
+
+        playerTurn = false;
+        StartCoroutine(EnemyTurn());
+    }
+
+    private bool CheckBossFirstAttack()
+    {
+        enemies.RemoveAll(enemy => enemy == null);
+
+        if (enemies.Count == 0)
+            return false;
+
+        if (miniBossHere && enemies[0].isMiniboss)
+        {
+            comentatoryText.SetText("Miniboss appeared! He attacks immediately!");
+            miniBossHere = false;
             playerTurn = false;
             StartCoroutine(EnemyTurn());
+            return true;
         }
 
-        if (miniBossHere)
+        if (bossHere && enemies[0].isBoss)
         {
-        
-            miniBossHere = false;
-            StartCoroutine(EnemyTurn());
-            return;
-        }
-
-        if (bossHere)
-        {
-            
-            
+            comentatoryText.SetText("Boss appeared! He attacks immediately!");
             bossHere = false;
+            playerTurn = false;
             StartCoroutine(EnemyTurn());
-            return;
+            return true;
         }
 
+        return false;
     }
 
         //Vyhodnocení stavu

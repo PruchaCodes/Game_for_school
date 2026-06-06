@@ -9,6 +9,8 @@ TagManager:
   - LevelCounter
   - EnemySpawn
   - CoinCounter
+  - comentatoryText
+  - comentatoryTextShop
   layers:
   - Default
   - TransparentFX

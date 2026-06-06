@@ -11,6 +11,7 @@ public class PlayerUIController : MonoBehaviour
     public coinCounter coinCounter;
     public player_stats player_stats;
     public TMPro.TextMeshProUGUI comentatoryText;
+    public TMPro.TextMeshProUGUI comentatoryTextShop;
     public GameObject player;
     void Update()
     {
@@ -37,6 +38,8 @@ public class PlayerUIController : MonoBehaviour
         {
             player_stats = GameObject.FindGameObjectWithTag("Player").GetComponent<player_stats>();
         }
+        
+        
 
         
 
@@ -111,59 +114,60 @@ public class PlayerUIController : MonoBehaviour
         if (battle_manager != null && player_stats.health < player_stats.maxHealth && coinCounter.currentCoins >= 20)
         {
             battle_manager.HealPlayer();
-            enemySpawn.LeaveVillage();
+            comentatoryTextShop.SetText("Player healed!");
         }
         else
         {
-            comentatoryText.SetText("Not enough coins to heal or already at full health.");
+            comentatoryTextShop.SetText("Not enough coins to heal or already at full health.");
         }
         
     }
 
     public void MaxHealthButton()
     {
-        if (battle_manager != null && player_stats.health <= player_stats.maxHealth && coinCounter.currentCoins >= 50)
+        if (battle_manager != null && player_stats.health <= player_stats.maxHealth && coinCounter.currentCoins >= 20)
         {
             player_stats.maxHealth += 10;
-            coinCounter.currentCoins -= 50;
+            coinCounter.currentCoins -= 20;
             coinCounter.UpdateCoinText();
-            enemySpawn.LeaveVillage();
+            comentatoryTextShop.SetText("Max health increased by 10!");
         }
         else
         {
-            comentatoryText.SetText("Not enough coins to increase max health or already at full health.");
+            comentatoryTextShop.SetText("Not enough coins to increase max health or already at full health.");
         }
     }
 
     public void MaxStaminaButton()
     {
         
-        if (battle_manager != null && player_stats.stamina <= player_stats.maxStamina && coinCounter.currentCoins >= 30)
+        if (battle_manager != null && player_stats.stamina <= player_stats.maxStamina && coinCounter.currentCoins >= 15)
         {
             player_stats.maxStamina += 10;
-            coinCounter.currentCoins -= 30;
+            player_stats.stamina = player_stats.maxStamina;
+            coinCounter.currentCoins -= 15;
             coinCounter.UpdateCoinText();
-            enemySpawn.LeaveVillage();
+            comentatoryTextShop.SetText("Max stamina increased by 10!");
         }
         else
         {
-            comentatoryText.SetText("Not enough coins to increase max stamina or already at full stamina.");
+            comentatoryTextShop.SetText("Not enough coins to increase max stamina or already at full stamina.");
         }
     }
 
     public void UpgradeDmgButton()
     {
         
-        if (battle_manager != null && coinCounter.currentCoins >= 40)
+        if (battle_manager != null && coinCounter.currentCoins >= 20)
         {
             player_stats.damage += 5;
-            coinCounter.currentCoins -= 40;
+            coinCounter.currentCoins -= 20;
             coinCounter.UpdateCoinText();
-            enemySpawn.LeaveVillage();
+            comentatoryTextShop.SetText("Damage increased by 5!");
         }
         else
         {
-            comentatoryText.SetText("Not enough coins to increase damage.");
+            comentatoryTextShop.SetText("Not enough coins to increase damage.");
         }
     }
 }
