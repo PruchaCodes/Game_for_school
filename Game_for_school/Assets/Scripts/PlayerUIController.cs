@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class PlayerUIController : MonoBehaviour
 {
     private BattleManager battle_manager;
@@ -10,6 +11,7 @@ public class PlayerUIController : MonoBehaviour
     public coinCounter coinCounter;
     public player_stats player_stats;
     public TMPro.TextMeshProUGUI comentatoryText;
+    public GameObject player;
     void Update()
     {
         if (battle_manager == null)
@@ -17,7 +19,12 @@ public class PlayerUIController : MonoBehaviour
             battle_manager = GameObject.FindGameObjectWithTag("BattleManager").GetComponent<BattleManager>();
         }
 
-        player_animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+       if(player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+
+        player_animator = player.GetComponent<Animator>();
         if(enemySpawn == null)
         {
             enemySpawn = GameObject.FindGameObjectWithTag("EnemySpawn").GetComponent<EnemySpawn>();
@@ -52,6 +59,51 @@ public class PlayerUIController : MonoBehaviour
         {
             battle_manager.RegenStamina();
         }
+    }
+
+    public void SpecialAttackButton()
+    {
+
+        if (battle_manager != null && player.GetComponent<SpriteRenderer>().sprite.name == "barbarian_0")
+        {
+            if(player_stats.stamina >= player_stats.maxStamina/3)
+            {
+                battle_manager.SpecialAttackBarbar();
+            }else
+            {
+                comentatoryText.SetText("Not enough stamina to exploit enemy's weakness");
+            }
+        }
+        
+
+        if (battle_manager != null && player.GetComponent<SpriteRenderer>().sprite.name == "mage_0")
+        {
+            if(player_stats.mana >= 30)
+            {
+                battle_manager.SpecialAttackMage();
+            }
+            else
+            {
+                comentatoryText.SetText("Not enough mana to cast FIRE BALL");
+            }
+            
+        }
+        
+        
+
+        if (battle_manager != null && player.GetComponent<SpriteRenderer>().sprite.name == "ranger_0")
+        {
+            if(player_stats.stamina >= player_stats.maxStamina / 3)
+            {
+                battle_manager.SpecialAttackRanger();
+            }
+            else
+            {
+                comentatoryText.SetText("Not enough stamina to perform sneak attack");
+            }
+            
+        }
+
     }
 
     public void HealButton()

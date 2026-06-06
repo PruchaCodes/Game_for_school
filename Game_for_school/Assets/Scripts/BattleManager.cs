@@ -48,6 +48,339 @@ public class BattleManager : MonoBehaviour
 
         
     }
+
+
+
+        public void SpecialAttackBarbar()
+    {
+
+        if (miniBossHere)
+        {
+           if(enemies[0].isMiniboss)
+            {
+                comentatoryText.SetText("Miniboss appered! He attacks immediately!");
+                miniBossHere = false;
+                StartCoroutine(EnemyTurn());
+                return;
+            }
+            
+        }
+
+        if (bossHere)
+        {
+           
+            if(enemies[0].isBoss)
+            {
+                comentatoryText.SetText("Boss appered! He attacks immediately!");
+                bossHere = false;
+                StartCoroutine(EnemyTurn());
+                return;
+            }
+        }
+
+        
+
+        if (!playerTurn)
+        {
+            Vyhodnoceni();
+            return;
+        }
+
+        if(player_stats.stamina < player_stats.maxStamina/3)
+        {
+            Vyhodnoceni();
+            return;
+        }
+
+        if(enemies.Count == 0)
+        {
+            Vyhodnoceni();
+            return;
+        }
+
+        if(player_stats.health <= 0)
+        {
+            Vyhodnoceni();
+            return;
+        }
+
+        enemies.RemoveAll(enemy => enemy == null);
+
+        if(enemies.Count > 0)
+        {
+
+            // Šance na zásah bosse
+            if(enemies.Count > 0 && enemies[0] != null && enemies[0].health > 0 && player_stats.health > 0 && enemies[0].isBoss)
+            {
+                
+                if(Random.Range(0, i) < 5)
+                {
+                    enemies[0].health -= player_stats.damage + enemies[0].damage;
+                    
+                    i++;
+                    comentatoryText.SetText("Boss hit by special attack! Chance to hit droped by 10%");
+                }
+                else
+                {
+                    if (i > 1)
+                    {
+                        i--;
+                    }
+                    comentatoryText.SetText("Boss missed! Chance to hit increased by 10%");
+                }
+
+                
+
+            }
+            else if(enemies.Count > 0 && enemies[0] != null && enemies[0].health > 0 && player_stats.health > 0)
+            {
+                enemies[0].health -= player_stats.damage + enemies[0].damage;
+                comentatoryText.SetText("Player attacks! Damage dealt: " + player_stats.damage + enemies[0].damage);
+            }
+
+            if(enemies[0].isBoss && enemies[0].health <= 0)
+            {
+                Victory();
+                Vyhodnoceni();
+                return;
+            }
+            else if(enemies[0].health <= 0)
+            {
+                Destroy(enemies[0].gameObject);
+
+                enemies.RemoveAt(0);
+            }
+
+        }
+
+        player_stats.stamina -= player_stats.maxStamina/3;
+
+        playerTurn = false;
+        StartCoroutine(EnemyTurn());
+    }
+
+
+    public void SpecialAttackRanger()
+    {
+
+        if (miniBossHere)
+        {
+           if(enemies[0].isMiniboss)
+            {
+                comentatoryText.SetText("Miniboss appered! He attacks immediately!");
+                miniBossHere = false;
+                StartCoroutine(EnemyTurn());
+                return;
+            }
+            
+        }
+
+        if (bossHere)
+        {
+           
+            if(enemies[0].isBoss)
+            {
+                comentatoryText.SetText("Boss appered! He attacks immediately!");
+                bossHere = false;
+                StartCoroutine(EnemyTurn());
+                return;
+            }
+        }
+
+        
+
+        if (!playerTurn)
+        {
+            Vyhodnoceni();
+            return;
+        }
+
+        if(player_stats.stamina < player_stats.maxStamina/3)
+        {
+            Vyhodnoceni();
+            return;
+        }
+
+        if(enemies.Count == 0)
+        {
+            Vyhodnoceni();
+            return;
+        }
+
+        if(player_stats.health <= 0)
+        {
+            Vyhodnoceni();
+            return;
+        }
+
+        enemies.RemoveAll(enemy => enemy == null);
+
+        if(enemies.Count > 0)
+        {
+
+            // Šance na zásah bosse
+            if(enemies.Count > 0 && enemies[0] != null && enemies[0].health > 0 && player_stats.health > 0 && enemies[0].isBoss)
+            {
+                
+                if(Random.Range(0, i) < 5)
+                {
+                    enemies[0].health -= player_stats.damage * 2;
+                    
+                    i++;
+                    comentatoryText.SetText("Boss received a critical hit! Chance to hit droped by 10%");
+                }
+                else
+                {
+                    if (i > 1)
+                    {
+                        i--;
+                    }
+                    comentatoryText.SetText("Boss missed! Chance to hit increased by 10%");
+                }
+
+                
+
+            }
+            else if(enemies.Count > 0 && enemies[0] != null && enemies[0].health > 0 && player_stats.health > 0)
+            {
+                enemies[0].health -= player_stats.damage * 2;
+                comentatoryText.SetText("Player attacks! Damage dealt: " + player_stats.damage * 2);
+            }
+
+            if(enemies[0].isBoss && enemies[0].health <= 0)
+            {
+                Victory();
+                Vyhodnoceni();
+                return;
+            }
+            else if(enemies[0].health <= 0)
+            {
+                Destroy(enemies[0].gameObject);
+
+                enemies.RemoveAt(0);
+            }
+
+        }
+
+        player_stats.stamina -= player_stats.maxStamina/3;
+
+        playerTurn = false;
+        StartCoroutine(EnemyTurn());
+    }
+
+
+
+    public void SpecialAttackMage()
+    {
+
+        if (miniBossHere)
+        {
+           if(enemies[0].isMiniboss)
+            {
+                comentatoryText.SetText("Miniboss appered! He attacks immediately!");
+                miniBossHere = false;
+                StartCoroutine(EnemyTurn());
+                return;
+            }
+            
+        }
+
+        if (bossHere)
+        {
+           
+            if(enemies[0].isBoss)
+            {
+                comentatoryText.SetText("Boss appered! He attacks immediately!");
+                bossHere = false;
+                StartCoroutine(EnemyTurn());
+                return;
+            }
+        }
+
+        
+
+        if (!playerTurn)
+        {
+            Vyhodnoceni();
+            return;
+        }
+
+        if(player_stats.stamina < 10)
+        {
+            Vyhodnoceni();
+            return;
+        }
+
+        if(enemies.Count == 0)
+        {
+            Vyhodnoceni();
+            return;
+        }
+
+        if(player_stats.health <= 0)
+        {
+            Vyhodnoceni();
+            return;
+        }
+
+        enemies.RemoveAll(enemy => enemy == null);
+
+        if(enemies.Count > 0)
+        {
+
+            // Šance na zásah bosse
+            if(enemies.Count > 0 && enemies[0] != null && enemies[0].health > 0 && player_stats.health > 0 && enemies[0].isBoss)
+            {
+                
+                if(Random.Range(0, i) < 5)
+                {
+                    
+                    enemies[0].health -= player_stats.damage * 4;
+                    
+                    i++;
+                    comentatoryText.SetText("Boss hit by FIRE BALL! Chance to hit droped by 10%");
+                }
+                else
+                {
+                    if (i > 1)
+                    {
+                        i--;
+                    }
+                    comentatoryText.SetText("Boss missed! Chance to hit increased by 10%");
+                }
+
+                
+
+            }
+            else if(enemies.Count > 0 && enemies[0] != null && enemies[0].health > 0 && player_stats.health > 0)
+            {
+                
+                enemies[0].health -= player_stats.damage * 4;
+                comentatoryText.SetText("Player attacks! Damage dealt: " + player_stats.damage * 4);
+            }
+
+            if(enemies[0].isBoss && enemies[0].health <= 0)
+            {
+                Victory();
+                Vyhodnoceni();
+                return;
+            }
+            else if(enemies[0].health <= 0)
+            {
+                Destroy(enemies[0].gameObject);
+
+                enemies.RemoveAt(0);
+            }
+
+        }
+
+        player_stats.mana -= 30;
+
+        playerTurn = false;
+        StartCoroutine(EnemyTurn());
+    }
+
+
         // Hráč útočí na nepřítele, pokud je jeho tah a má dostatek staminy
     public void PlayerAttack()
     {
