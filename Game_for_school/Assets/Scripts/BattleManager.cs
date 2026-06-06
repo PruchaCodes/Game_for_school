@@ -570,7 +570,7 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        if (player_stats.stamina >= player_stats.maxStamina)
+        if (player_stats.stamina >= player_stats.maxStamina && player_stats.mana >= player_stats.maxMana)
         {
             Vyhodnoceni();
             return;
@@ -579,6 +579,13 @@ public class BattleManager : MonoBehaviour
         comentatoryText.SetText("Regenerating stamina by 10!");
         player_stats.stamina += 10;
         player_stats.stamina = Math.Min(player_stats.stamina, player_stats.maxStamina);
+
+        if(player_stats.maxMana > 0)
+        {
+            player_stats.mana += 10;
+            player_stats.mana = Math.Min(player_stats.mana, player_stats.maxMana);
+        }
+        
 
         playerTurn = false;
         StartCoroutine(EnemyTurn());

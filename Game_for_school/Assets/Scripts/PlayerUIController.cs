@@ -144,7 +144,12 @@ public class PlayerUIController : MonoBehaviour
         if (battle_manager != null && player_stats.stamina <= player_stats.maxStamina && coinCounter.currentCoins >= 15)
         {
             player_stats.maxStamina += 10;
+            if(player_stats.maxMana > 0)
+            {
+                player_stats.maxMana += 10;
+            }
             player_stats.stamina = player_stats.maxStamina;
+            player_stats.mana = player_stats.maxMana;
             coinCounter.currentCoins -= 15;
             coinCounter.UpdateCoinText();
             comentatoryTextShop.SetText("Max stamina increased by 10!");
