@@ -3,9 +3,19 @@ using UnityEngine.SceneManagement;
 
 public class VictoryScreen : MonoBehaviour
 {
+    SoundManager soundManager;
+
+    private void Start()
+    {
+        soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+    }
    public void Setup()
    {
-      gameObject.SetActive(true);
+
+
+        soundManager.PlaySFX(soundManager.winSound);
+    
+        gameObject.SetActive(true);
    }
 
     public void Restart()

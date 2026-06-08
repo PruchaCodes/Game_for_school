@@ -11,9 +11,14 @@ public class coinCounter : MonoBehaviour
     public TextMeshProUGUI comentatoryText;
     public TextMeshProUGUI coinTextShop;
     public TextMeshProUGUI comentatoryTextShop;
+    public SoundManager soundManager;
 
     void Awake()
     {
+        if(soundManager == null)
+        {
+            soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+        }
         Instance = this;
     }
 
@@ -37,6 +42,8 @@ public class coinCounter : MonoBehaviour
             comentatoryText.SetText("No coins found");
             return;
         }
+
+        soundManager.PlaySFX(soundManager.CoinSound);
 
         currentCoins += defeatedEnemyData.value;
         UpdateCoinText();

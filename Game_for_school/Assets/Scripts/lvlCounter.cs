@@ -12,9 +12,11 @@ public class lvlCounter : MonoBehaviour
     private int i = 1;
     public int expToNextLevel = 20;
     public TextMeshProUGUI levelText;
+    public SoundManager soundManager;
 
     void Awake()
     {
+        
         Instance = this;
     }
 
@@ -26,6 +28,10 @@ public class lvlCounter : MonoBehaviour
 
     void Update()
     {
+        if(soundManager == null)
+        {
+            soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+        }
 
         if (player_stats == null)
         {
@@ -40,6 +46,8 @@ public class lvlCounter : MonoBehaviour
 
     public void gainLvl()
     {
+        soundManager.PlaySFX(soundManager.LvlUpSound);
+
         i++;
         currentExp = 0;
         currentLevel++;

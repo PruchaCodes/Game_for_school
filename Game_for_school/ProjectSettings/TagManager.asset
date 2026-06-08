@@ -11,6 +11,7 @@ TagManager:
   - CoinCounter
   - comentatoryText
   - comentatoryTextShop
+  - SoundManager
   layers:
   - Default
   - TransparentFX

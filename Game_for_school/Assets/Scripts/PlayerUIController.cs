@@ -13,8 +13,14 @@ public class PlayerUIController : MonoBehaviour
     public TMPro.TextMeshProUGUI comentatoryText;
     public TMPro.TextMeshProUGUI comentatoryTextShop;
     public GameObject player;
+    public SoundManager soundManager;
     void Update()
     {
+        if(soundManager == null)
+        {
+            soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+        }
+
         if (battle_manager == null)
         {
             battle_manager = GameObject.FindGameObjectWithTag("BattleManager").GetComponent<BattleManager>();
@@ -41,11 +47,17 @@ public class PlayerUIController : MonoBehaviour
         
         
 
-        
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            soundManager.PlaySFX(soundManager.ClickSound);
+        }
+
 
 
         
     }
+
+    
 
    
     public void AttackButton()
